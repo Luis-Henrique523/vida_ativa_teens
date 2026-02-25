@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Dados - Equipes Coloridas</title>
+    <style>
+        :root {
+            --azul: #4d94ff;
+            --vermelho: #ff4d4d;
+            --verde: #4dff4d;
+            --laranja: #ff9933;
+            --amarelo: #ffcc00;
+            --roxo: #b84dff;
+            --rosa: #ff4db8;
+            --marrom: #a0522d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .painel-controle {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .equipe-info {
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .equipe-azul {
+            background-color: #e6f2ff;
+            border: 2px solid var(--azul);
+        }
+        
+        .equipe-vermelho {
+            background-color: #ffe6e6;
+            border: 2px solid var(--vermelho);
+        }
+        
+        .equipe-verde {
+            background-color: #e6ffe6;
+            border: 2px solid var(--verde);
+        }
+        
+        .equipe-laranja {
+            background-color: #fff2e6;
+            border: 2px solid var(--laranja);
+        }
+        
+        .equipe-amarelo {
+            background-color: #fffde6;
+            border: 2px solid var(--amarelo);
+        }
+        
+        .equipe-roxo {
+            background-color: #f2e6ff;
+            border: 2px solid var(--roxo);
+        }
+        
+        .equipe-rosa {
+            background-color: #ffe6f2;
+            border: 2px solid var(--rosa);
+        }
+        
+        .equipe-marrom {
+            background-color: #f2e6d9;
+            border: 2px solid var(--marrom);
+        }
+        
+        .dado-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .dado {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease;
+        }
+        
+        .dado.rolar {
+            animation: rolarDado 0.8s ease;
+        }
+        
+        @keyframes rolarDado {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: #4d94ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #3a7bd5;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .equipes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .equipe-btn {
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+            border: 2px solid transparent;
+        }
+        
+        .equipe-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .equipe-btn.ativa {
+            border: 2px solid #333;
+            transform: scale(1.05);
+        }
+        
+        .historico {
+            width: 100%;
+            margin-top: 30px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .historico h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .historico-lista {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .historico-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pontuacao {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .rodada {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .nova-equipe {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .nova-equipe h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .form-nova-equipe {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .form-nova-equipe input, .form-nova-equipe select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-nova-equipe button {
+            padding: 8px 15px;
+        }
+        
+        .cores-disponiveis {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .cor-opcao {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .cor-opcao.selecionada {
+            border: 2px solid #333;
+        }
+        
+        .remover-equipe {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Jogo de Dados - Equipes Coloridas</h1>
+        
+        <div class="rodada" id="rodada">Rodada: 1</div>
+        
+        <div class="equipe-info" id="equipe-info">
+            <h2 id="equipe-nome">Equipe Azul</h2>
+            <div class="pontuacao" id="pontuacao">Pontuação: 0</div>
+        </div>
+        
+        <div class="dado-container">
+            <div class="dado" id="dado">?</div>
+            <button id="rolar-dado">Rolar Dado</button>
+        </div>
+        
+        <div class="painel-controle">
+            <div class="equipes-container" id="equipes-container">
+                <!-- As equipes serão adicionadas dinamicamente aqui -->
+            </div>
+        </div>
+        
+        <div class="nova-equipe">
+            <h3>Adicionar Nova Equipe</h3>
+            <div class="form-nova-equipe">
+                <input type="text" id="nome-nova-equipe" placeholder="Nome da equipe">
+                <select id="cor-nova-equipe">
+                    <option value="azul">Azul</option>
+                    <option value="vermelho">Vermelho</option>
+                    <option value="verde">Verde</option>
+                    <option value="laranja">Laranja</option>
+                    <option value="amarelo">Amarelo</option>
+                    <option value="roxo">Roxo</option>
+                    <option value="rosa">Rosa</option>
+                    <option value="marrom">Marrom</option>
+                </select>
+                <button id="adicionar-equipe">Adicionar Equipe</button>
+            </div>
+        </div>
+        
+        <div class="historico">
+            <h3>Histórico de Jogadas</h3>
+            <div class="historico-lista" id="historico-lista"></div>
+        </div>
+    </div>
+
+    <script>
+        // Dados das equipes
+        let equipes = {
+            azul: { nome: "Equipe Azul", cor: "azul", pontuacao: 0 },
+            vermelho: { nome: "Equipe Vermelho", cor: "vermelho", pontuacao: 0 },
+            verde: { nome: "Equipe Verde", cor: "verde", pontuacao: 0 },
+            laranja: { nome: "Equipe Laranja", cor: "laranja", pontuacao: 0 },
+            amarelo: { nome: "Equipe Amarelo", cor: "amarelo", pontuacao: 0 }
+        };
+        
+        // Estado do jogo
+        let equipeAtual = "azul";
+        let rodada = 1;
+        let historico = [];
+        let rolandoDado = false;
+        
+        // Elementos DOM
+        const dadoElement = document.getElementById('dado');
+        const rolarDadoBtn = document.getElementById('rolar-dado');
+        const equipeInfoElement = document.getElementById('equipe-info');
+        const equipeNomeElement = document.getElementById('equipe-nome');
+        const pontuacaoElement = document.getElementById('pontuacao');
+        const rodadaElement = document.getElementById('rodada');
+        const historicoListaElement = document.getElementById('historico-lista');
+        const equipesContainerElement = document.getElementById('equipes-container');
+        const adicionarEquipeBtn = document.getElementById('adicionar-equipe');
+        const nomeNovaEquipeInput = document.getElementById('nome-nova-equipe');
+        const corNovaEquipeSelect = document.getElementById('cor-nova-equipe');
+        
+        // Atualizar a interface com a equipe atual
+        function atualizarEquipeAtual() {
+            const equipe = equipes[equipeAtual];
+            equipeNomeElement.textContent = equipe.nome;
+            pontuacaoElement.textContent = `Pontuação: ${equipe.pontuacao}`;
+            
+            // Atualizar a cor da equipe
+            equipeInfoElement.className = 'equipe-info';
+            equipeInfoElement.classList.add(`equipe-${equipe.cor}`);
+            
+            // Atualizar a rodada
+            rodadaElement.textContent = `Rodada: ${rodada}`;
+            
+            // Atualizar botões das equipes
+            atualizarBotoesEquipes();
+        }
+        
+        // Atualizar os botões das equipes
+        function atualizarBotoesEquipes() {
+            equipesContainerElement.innerHTML = '';
+            
+            Object.keys(equipes).forEach(cor => {
+                const equipe = equipes[cor];
+                const btn = document.createElement('div');
+                btn.className = `equipe-btn equipe-${equipe.cor}`;
+                if (cor === equipeAtual) {
+                    btn.classList.add('ativa');
+                }
+                btn.textContent = equipe.nome;
+                btn.setAttribute('data-equipe', cor);
+                
+                // Botão para remover equipe (só aparece se houver mais de 2 equipes)
+                if (Object.keys(equipes).length > 2) {
+                    const removerBtn = document.createElement('button');
+                    removerBtn.className = 'remover-equipe';
+                    removerBtn.textContent = 'X';
+                    removerBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        removerEquipe(cor);
+                    });
+                    btn.appendChild(removerBtn);
+                }
+                
+                btn.addEventListener('click', () => {
+                    selecionarEquipe(cor);
+                });
+                
+                equipesContainerElement.appendChild(btn);
+            });
+        }
+        
+        // Rolar o dado
+        function rolarDado() {
+            if (rolandoDado) return;
+            
+            rolandoDado = true;
+            
+            // Desabilitar o botão durante a animação
+            rolarDadoBtn.disabled = true;
+            
+            // Adicionar animação
+            dadoElement.classList.add('rolar');
+            dadoElement.textContent = '?';
+            
+            // Gerar um número aleatório entre 1 e 6 após a animação
+            setTimeout(() => {
+                const resultado = Math.floor(Math.random() * 6) + 1;
+                dadoElement.textContent = resultado;
+                
+                // Atualizar pontuação da equipe
+                equipes[equipeAtual].pontuacao += resultado;
+                
+                // Adicionar ao histórico
+                const historicoItem = {
+                    equipe: equipes[equipeAtual].nome,
+                    resultado: resultado,
+                    rodada: rodada
+                };
+                historico.unshift(historicoItem);
+                
+                // Atualizar interface
+                atualizarEquipeAtual();
+                atualizarHistorico();
+                
+                // Avançar para a próxima equipe
+                avancarEquipe();
+                
+                // Reabilitar o botão
+                rolarDadoBtn.disabled = false;
+                dadoElement.classList.remove('rolar');
+                rolandoDado = false;
+            }, 800);
+        }
+        
+        // Avançar para a próxima equipe
+        function avancarEquipe() {
+            const cores = Object.keys(equipes);
+            const indexAtual = cores.indexOf(equipeAtual);
+            const proximoIndex = (indexAtual + 1) % cores.length;
+            
+            equipeAtual = cores[proximoIndex];
+            
+            // Se voltamos à primeira equipe, incrementamos a rodada
+            if (proximoIndex === 0) {
+                rodada++;
+            }
+            
+            atualizarEquipeAtual();
+        }
+        
+        // Atualizar o histórico
+        function atualizarHistorico() {
+            historicoListaElement.innerHTML = '';
+            
+            historico.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'historico-item';
+                itemElement.textContent = `Rodada ${item.rodada}: ${item.equipe} rolou ${item.resultado}`;
+                historicoListaElement.appendChild(itemElement);
+            });
+        }
+        
+        // Selecionar equipe manualmente
+        function selecionarEquipe(cor) {
+            equipeAtual = cor;
+            atualizarEquipeAtual();
+        }
+        
+        // Adicionar nova equipe
+        function adicionarEquipe() {
+            const nome = nomeNovaEquipeInput.value.trim();
+            const cor = corNovaEquipeSelect.value;
+            
+            if (!nome) {
+                alert('Por favor, digite um nome para a equipe.');
+                return;
+            }
+            
+            if (equipes[cor]) {
+                alert('Já existe uma equipe com esta cor. Escolha outra cor.');
+                return;
+            }
+            
+            // Adicionar a nova equipe
+            equipes[cor] = {
+                nome: nome,
+                cor: cor,
+                pontuacao: 0
+            };
+            
+            // Limpar o campo de entrada
+            nomeNovaEquipeInput.value = '';
+            
+            // Atualizar a interface
+            atualizarBotoesEquipes();
+        }
+        
+        // Remover equipe
+        function removerEquipe(cor) {
+            if (Object.keys(equipes).length <= 2) {
+                alert('É necessário ter pelo menos 2 equipes.');
+                return;
+            }
+            
+            if (confirm(`Tem certeza que deseja remover a ${equipes[cor].nome}?`)) {
+                // Se a equipe atual está sendo removida, mudar para a primeira equipe
+                if (equipeAtual === cor) {
+                    const outrasEquipes = Object.keys(equipes).filter(c => c !== cor);
+                    equipeAtual = outrasEquipes[0];
+                }
+                
+                // Remover a equipe
+                delete equipes[cor];
+                
+                // Atualizar a interface
+                atualizarEquipeAtual();
+                atualizarBotoesEquipes();
+            }
+        }
+        
+        // Event Listeners
+        rolarDadoBtn.addEventListener('click', rolarDado);
+        adicionarEquipeBtn.addEventListener('click', adicionarEquipe);
+        
+        // Permitir adicionar equipe com Enter
+        nomeNovaEquipeInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                adicionarEquipe();
+            }
+        });
+        
+        // Inicializar
+        atualizarEquipeAtual();
+        atualizarBotoesEquipes();
+    </script>
+</body>
+</html>
