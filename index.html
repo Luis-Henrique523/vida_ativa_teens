@@ -2,549 +2,860 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Dados - Equipes Coloridas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Vida Ativa Adolescentes - Treinos em Casa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --azul: #4d94ff;
-            --vermelho: #ff4d4d;
-            --verde: #4dff4d;
-            --laranja: #ff9933;
-            --amarelo: #ffcc00;
-            --roxo: #b84dff;
-            --rosa: #ff4db8;
-            --marrom: #a0522d;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
+        /* Reset e configurações gerais - OTIMIZADO PARA CELULAR */
+        * {
             margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Remove highlight ao tocar */
         }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
+
+        /* Cores */
+        :root {
+            --black: #0A0F0D;
+            --dark-blue: #0B2B40;
+            --blue: #1E5F73;
+            --green: #2E8B57;
+            --light-green: #4CAF50;
+            --white: #F5F5F5;
+            --gray: #2C3E50;
         }
-        
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.5;
+            font-size: 16px; /* Tamanho base para celular */
+        }
+
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            max-width: 900px;
-            width: 100%;
+            width: 95%;
+            max-width: 500px; /* Limitado para telas de celular */
+            margin: 0 auto;
+            padding: 0 10px;
         }
-        
-        .painel-controle {
+
+        section {
+            padding: 50px 0;
+        }
+
+        /* Header simplificado para celular */
+        header {
+            background-color: rgba(10, 15, 13, 0.98);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--green);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .header-content {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--green);
+            margin-left: 3px;
+        }
+
+        .logo i {
+            margin-right: 5px;
+            color: var(--blue);
+            font-size: 1.6rem;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--green);
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            width: 100%;
         }
-        
-        .equipe-info {
-            width: 100%;
+
+        /* Menu mobile */
+        nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: var(--black);
+            border-bottom: 2px solid var(--green);
+            transform: translateY(-150%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+        }
+
+        nav.show {
+            transform: translateY(0);
+        }
+
+        nav ul {
+            list-style: none;
             padding: 20px;
-            border-radius: 10px;
+        }
+
+        nav ul li {
+            margin: 15px 0;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: block;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--green);
+            background: rgba(30, 95, 115, 0.2);
+        }
+
+        /* Hero Section - Otimizado */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-blue) 100%);
+            color: var(--white);
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
+            padding: 60px 0;
         }
-        
-        .equipe-azul {
-            background-color: #e6f2ff;
-            border: 2px solid var(--azul);
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--white), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .equipe-vermelho {
-            background-color: #ffe6e6;
-            border: 2px solid var(--vermelho);
+
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            padding: 0 15px;
         }
-        
-        .equipe-verde {
-            background-color: #e6ffe6;
-            border: 2px solid var(--verde);
+
+        /* Botões maiores para toque */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--dark-blue), var(--blue));
+            color: var(--white);
+            padding: 16px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid var(--green);
+            cursor: pointer;
+            margin: 8px;
+            font-size: 1.1rem;
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
         }
-        
-        .equipe-laranja {
-            background-color: #fff2e6;
-            border: 2px solid var(--laranja);
+
+        .btn-outline {
+            background: transparent;
         }
-        
-        .equipe-amarelo {
-            background-color: #fffde6;
-            border: 2px solid var(--amarelo);
+
+        /* Títulos */
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            position: relative;
         }
-        
-        .equipe-roxo {
-            background-color: #f2e6ff;
-            border: 2px solid var(--roxo);
+
+        .section-title span {
+            color: var(--green);
         }
-        
-        .equipe-rosa {
-            background-color: #ffe6f2;
-            border: 2px solid var(--rosa);
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), var(--blue));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        
-        .equipe-marrom {
-            background-color: #f2e6d9;
-            border: 2px solid var(--marrom);
-        }
-        
-        .dado-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        /* Cards de exercícios - Touch friendly */
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 20px;
+            margin-top: 20px;
+        }
+
+        .exercise-card {
+            background: linear-gradient(145deg, var(--dark-blue), var(--black));
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--blue);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .exercise-card:active {
+            transform: scale(0.98);
+        }
+
+        .card-image {
+            height: 150px;
+            background: linear-gradient(135deg, var(--blue), var(--dark-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image i {
+            font-size: 4rem;
+            color: var(--green);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: var(--green);
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        .exercise-details {
+            background: rgba(30, 95, 115, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 3px solid var(--green);
+            display: none;
+        }
+
+        .exercise-card.active .exercise-details {
+            display: block;
+        }
+
+        /* Botão do timer nos cards */
+        .timer-btn {
+            background: var(--green);
+            color: var(--black);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        /* Rotina */
+        .routine-section {
+            background: linear-gradient(135deg, var(--black), var(--dark-blue));
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .routine-timeline {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
             margin: 20px 0;
         }
-        
-        .dado {
-            width: 100px;
-            height: 100px;
-            background-color: white;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.5s ease;
+
+        .routine-item {
+            background: rgba(30, 95, 115, 0.3);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            border-bottom: 3px solid var(--green);
         }
-        
-        .dado.rolar {
-            animation: rolarDado 0.8s ease;
-        }
-        
-        @keyframes rolarDado {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-        
-        button {
-            padding: 12px 25px;
-            font-size: 1rem;
-            background-color: #4d94ff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        button:hover {
-            background-color: #3a7bd5;
-        }
-        
-        button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        
-        .equipes-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .equipe-btn {
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s ease;
-            border: 2px solid transparent;
-        }
-        
-        .equipe-btn:hover {
-            transform: translateY(-3px);
-        }
-        
-        .equipe-btn.ativa {
-            border: 2px solid #333;
-            transform: scale(1.05);
-        }
-        
-        .historico {
-            width: 100%;
-            margin-top: 30px;
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .historico h3 {
-            margin-top: 0;
-            color: #333;
-        }
-        
-        .historico-lista {
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        
-        .historico-item {
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .pontuacao {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .rodada {
+
+        .routine-item h4 {
+            color: var(--green);
             font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #555;
+            margin: 5px 0;
         }
-        
-        .nova-equipe {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        .routine-item i {
+            font-size: 2rem;
+            color: var(--blue);
+        }
+
+        /* Timer - Maior para toque */
+        .timer-container {
+            background: linear-gradient(145deg, var(--black), var(--dark-blue));
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid var(--blue);
+            margin: 20px 0;
+        }
+
+        .timer-display {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--green);
+            font-family: monospace;
+            margin: 20px 0;
+        }
+
+        .timer-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .timer-controls button {
+            padding: 18px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .timer-start {
+            background: var(--green);
+            color: var(--black);
+            grid-column: span 2;
+        }
+
+        .timer-pause {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .timer-reset {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        /* Barra de progresso */
+        .progress-bar {
             width: 100%;
+            height: 12px;
+            background: var(--dark-blue);
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), var(--blue));
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* Dicas */
+        .tips-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
             margin-top: 20px;
         }
-        
-        .nova-equipe h3 {
-            margin-top: 0;
-            color: #333;
+
+        .tip-card {
+            background: linear-gradient(145deg, var(--dark-blue), var(--black));
+            padding: 20px 12px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--blue);
         }
-        
-        .form-nova-equipe {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
+
+        .tip-card i {
+            font-size: 2rem;
+            color: var(--green);
+            margin-bottom: 8px;
         }
-        
-        .form-nova-equipe input, .form-nova-equipe select {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+
+        .tip-card h4 {
             font-size: 1rem;
+            margin-bottom: 5px;
         }
-        
-        .form-nova-equipe button {
-            padding: 8px 15px;
+
+        .tip-card p {
+            font-size: 0.85rem;
+            color: #ccc;
         }
-        
-        .cores-disponiveis {
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 30px 0 15px;
+            border-top: 2px solid var(--green);
+            margin-top: 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .footer-logo span {
+            color: var(--green);
+        }
+
+        .footer-links ul {
+            list-style: none;
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            justify-content: center;
+            gap: 20px;
             flex-wrap: wrap;
         }
-        
-        .cor-opcao {
-            width: 30px;
-            height: 30px;
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 12px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 44px;
+            height: 44px;
+            background: var(--dark-blue);
             border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            text-decoration: none;
+            font-size: 1.3rem;
+            border: 1px solid var(--blue);
         }
-        
-        .cor-opcao.selecionada {
-            border: 2px solid #333;
+
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 1px solid var(--dark-blue);
+            font-size: 0.85rem;
+            color: #888;
         }
-        
-        .remover-equipe {
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 5px 10px;
-            cursor: pointer;
-            margin-left: 10px;
+
+        /* QR Code info */
+        .qrcode-info {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--green);
+            color: var(--black);
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qrcode-info i {
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Jogo de Dados - Equipes Coloridas</h1>
-        
-        <div class="rodada" id="rodada">Rodada: 1</div>
-        
-        <div class="equipe-info" id="equipe-info">
-            <h2 id="equipe-nome">Equipe Azul</h2>
-            <div class="pontuacao" id="pontuacao">Pontuação: 0</div>
-        </div>
-        
-        <div class="dado-container">
-            <div class="dado" id="dado">?</div>
-            <button id="rolar-dado">Rolar Dado</button>
-        </div>
-        
-        <div class="painel-controle">
-            <div class="equipes-container" id="equipes-container">
-                <!-- As equipes serão adicionadas dinamicamente aqui -->
-            </div>
-        </div>
-        
-        <div class="nova-equipe">
-            <h3>Adicionar Nova Equipe</h3>
-            <div class="form-nova-equipe">
-                <input type="text" id="nome-nova-equipe" placeholder="Nome da equipe">
-                <select id="cor-nova-equipe">
-                    <option value="azul">Azul</option>
-                    <option value="vermelho">Vermelho</option>
-                    <option value="verde">Verde</option>
-                    <option value="laranja">Laranja</option>
-                    <option value="amarelo">Amarelo</option>
-                    <option value="roxo">Roxo</option>
-                    <option value="rosa">Rosa</option>
-                    <option value="marrom">Marrom</option>
-                </select>
-                <button id="adicionar-equipe">Adicionar Equipe</button>
-            </div>
-        </div>
-        
-        <div class="historico">
-            <h3>Histórico de Jogadas</h3>
-            <div class="historico-lista" id="historico-lista"></div>
-        </div>
+    <!-- QR Code Info -->
+    <div class="qrcode-info">
+        <i class="fas fa-qrcode"></i> Escaneie para acessar no celular
     </div>
 
+    <!-- Header Mobile -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo"><i class="fas fa-dumbbell"></i>Vida<span>Ativa</span></a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Mobile -->
+    <nav id="mobileNav">
+        <ul>
+            <li><a href="#home" onclick="toggleMenu()"><i class="fas fa-home"></i> Início</a></li>
+            <li><a href="#exercises" onclick="toggleMenu()"><i class="fas fa-running"></i> Exercícios</a></li>
+            <li><a href="#routine" onclick="toggleMenu()"><i class="fas fa-calendar"></i> Rotina</a></li>
+            <li><a href="#timer" onclick="toggleMenu()"><i class="fas fa-clock"></i> Timer</a></li>
+            <li><a href="#tips" onclick="toggleMenu()"><i class="fas fa-lightbulb"></i> Dicas</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>VOCÊ NO CONTROLE</h1>
+            <p>Transforme seu corpo sem sair de casa. Exercícios práticos e divertidos para você!</p>
+            <a href="#exercises" class="btn"><i class="fas fa-play"></i> COMEÇAR</a>
+            <a href="#routine" class="btn btn-outline"><i class="fas fa-calendar"></i> ROTINA</a>
+        </div>
+    </section>
+
+    <!-- Exercícios -->
+    <section class="exercises" id="exercises">
+        <div class="container">
+            <h2 class="section-title">EXERCÍCIOS <span>INTERATIVOS</span></h2>
+            
+            <div class="exercises-grid">
+                <!-- Polichinelos -->
+                <div class="exercise-card" onclick="toggleCard(this)">
+                    <div class="card-image">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>POLICHINELOS</h3>
+                        <p>Cardiovascular intenso</p>
+                        <div class="exercise-details">
+                            <strong>Como fazer:</strong>
+                            <p>Pule abrindo pernas e braços simultaneamente.</p>
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Polichinelos'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> Timer 30s
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agachamentos -->
+                <div class="exercise-card" onclick="toggleCard(this)">
+                    <div class="card-image">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>AGACHAMENTOS</h3>
+                        <p>Fortalece pernas e glúteos</p>
+                        <div class="exercise-details">
+                            <strong>Como fazer:</strong>
+                            <p>Costas retas, desça como se fosse sentar.</p>
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Agachamentos'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> Timer 30s
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flexões -->
+                <div class="exercise-card" onclick="toggleCard(this)">
+                    <div class="card-image">
+                        <i class="fas fa-hand-peace"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>FLEXÕES</h3>
+                        <p>Fortalece braços e peito</p>
+                        <div class="exercise-details">
+                            <strong>Como fazer:</strong>
+                            <p>Corpo reto, desça até quase encostar no chão.</p>
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Flexões'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> Timer 30s
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prancha -->
+                <div class="exercise-card" onclick="toggleCard(this)">
+                    <div class="card-image">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>PRANCHA</h3>
+                        <p>Fortalece o core</p>
+                        <div class="exercise-details">
+                            <strong>Como fazer:</strong>
+                            <p>Apoie antebraços e ponta dos pés, corpo reto.</p>
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Prancha'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> Timer 30s
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bicicleta -->
+                <div class="exercise-card" onclick="toggleCard(this)">
+                    <div class="card-image">
+                        <i class="fas fa-bicycle"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>BICICLETA</h3>
+                        <p>Foco abdominal</p>
+                        <div class="exercise-details">
+                            <strong>Como fazer:</strong>
+                            <p>Deitado, alterne joelhos em direção ao peito.</p>
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Bicicleta'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> Timer 30s
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pulo do Sapo -->
+                <div class="exercise-card" onclick="toggleCard(this)">
+                    <div class="card-image">
+                        <i class="fas fa-frog"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>PULO DO SAPO</h3>
+                        <p>Alta intensidade</p>
+                        <div class="exercise-details">
+                            <strong>Como fazer:</strong>
+                            <p>Agachado, pule estendendo pernas para trás.</p>
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Pulo do Sapo'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> Timer 30s
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rotina -->
+            <div class="routine-section" id="routine">
+                <h2 style="color: var(--green); text-align: center; margin-bottom: 20px;">ROTINA RÁPIDA</h2>
+                
+                <div class="routine-timeline">
+                    <div class="routine-item">
+                        <i class="fas fa-temperature-high"></i>
+                        <h4>Aquecimento</h4>
+                        <p>5 min</p>
+                    </div>
+                    <div class="routine-item">
+                        <i class="fas fa-bolt"></i>
+                        <h4>3 Séries</h4>
+                        <p>30s cada</p>
+                    </div>
+                    <div class="routine-item">
+                        <i class="fas fa-heartbeat"></i>
+                        <h4>Alongamento</h4>
+                        <p>5 min</p>
+                    </div>
+                </div>
+
+                <button class="btn" style="width: 100%;" onclick="startFullRoutine()">
+                    <i class="fas fa-play"></i> INICIAR ROTINA
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timer -->
+    <section class="timer-container" id="timer">
+        <div class="container">
+            <h2 class="section-title">CRONÔMETRO</h2>
+            
+            <div class="timer-display" id="timerDisplay">00:00</div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div class="timer-controls">
+                <button class="timer-start" onclick="startTimer()"><i class="fas fa-play"></i> INICIAR</button>
+                <button class="timer-pause" onclick="pauseTimer()"><i class="fas fa-pause"></i> PAUSAR</button>
+                <button class="timer-reset" onclick="resetTimer()"><i class="fas fa-redo"></i> RESETAR</button>
+            </div>
+            
+            <p style="margin-top: 15px; color: #ccc; font-size: 0.9rem;" id="currentExercise">
+                Toque em um exercício para iniciar o timer
+            </p>
+        </div>
+    </section>
+
+    <!-- Dicas -->
+    <section class="container" id="tips">
+        <h2 class="section-title">DICAS <span>IMPORTANTES</span></h2>
+        
+        <div class="tips-section">
+            <div class="tip-card">
+                <i class="fas fa-shield-alt"></i>
+                <h4>SEGURANÇA</h4>
+                <p>Use tênis e colchonete</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-tachometer-alt"></i>
+                <h4>INTENSIDADE</h4>
+                <p>Aumente aos poucos</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-water"></i>
+                <h4>HIDRATAÇÃO</h4>
+                <p>Beba água sempre</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-music"></i>
+                <h4>MÚSICA</h4>
+                <p>Treine com playlist</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Vida<span>Ativa</span></div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#exercises">Exercícios</a></li>
+                        <li><a href="#timer">Timer</a></li>
+                    </ul>
+                </div>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 Vida Ativa Teens</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Dados das equipes
-        let equipes = {
-            azul: { nome: "Equipe Azul", cor: "azul", pontuacao: 0 },
-            vermelho: { nome: "Equipe Vermelho", cor: "vermelho", pontuacao: 0 },
-            verde: { nome: "Equipe Verde", cor: "verde", pontuacao: 0 },
-            laranja: { nome: "Equipe Laranja", cor: "laranja", pontuacao: 0 },
-            amarelo: { nome: "Equipe Amarelo", cor: "amarelo", pontuacao: 0 }
-        };
-        
-        // Estado do jogo
-        let equipeAtual = "azul";
-        let rodada = 1;
-        let historico = [];
-        let rolandoDado = false;
-        
-        // Elementos DOM
-        const dadoElement = document.getElementById('dado');
-        const rolarDadoBtn = document.getElementById('rolar-dado');
-        const equipeInfoElement = document.getElementById('equipe-info');
-        const equipeNomeElement = document.getElementById('equipe-nome');
-        const pontuacaoElement = document.getElementById('pontuacao');
-        const rodadaElement = document.getElementById('rodada');
-        const historicoListaElement = document.getElementById('historico-lista');
-        const equipesContainerElement = document.getElementById('equipes-container');
-        const adicionarEquipeBtn = document.getElementById('adicionar-equipe');
-        const nomeNovaEquipeInput = document.getElementById('nome-nova-equipe');
-        const corNovaEquipeSelect = document.getElementById('cor-nova-equipe');
-        
-        // Atualizar a interface com a equipe atual
-        function atualizarEquipeAtual() {
-            const equipe = equipes[equipeAtual];
-            equipeNomeElement.textContent = equipe.nome;
-            pontuacaoElement.textContent = `Pontuação: ${equipe.pontuacao}`;
-            
-            // Atualizar a cor da equipe
-            equipeInfoElement.className = 'equipe-info';
-            equipeInfoElement.classList.add(`equipe-${equipe.cor}`);
-            
-            // Atualizar a rodada
-            rodadaElement.textContent = `Rodada: ${rodada}`;
-            
-            // Atualizar botões das equipes
-            atualizarBotoesEquipes();
+        // Menu mobile
+        function toggleMenu() {
+            document.getElementById('mobileNav').classList.toggle('show');
         }
-        
-        // Atualizar os botões das equipes
-        function atualizarBotoesEquipes() {
-            equipesContainerElement.innerHTML = '';
-            
-            Object.keys(equipes).forEach(cor => {
-                const equipe = equipes[cor];
-                const btn = document.createElement('div');
-                btn.className = `equipe-btn equipe-${equipe.cor}`;
-                if (cor === equipeAtual) {
-                    btn.classList.add('ativa');
-                }
-                btn.textContent = equipe.nome;
-                btn.setAttribute('data-equipe', cor);
-                
-                // Botão para remover equipe (só aparece se houver mais de 2 equipes)
-                if (Object.keys(equipes).length > 2) {
-                    const removerBtn = document.createElement('button');
-                    removerBtn.className = 'remover-equipe';
-                    removerBtn.textContent = 'X';
-                    removerBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        removerEquipe(cor);
-                    });
-                    btn.appendChild(removerBtn);
-                }
-                
-                btn.addEventListener('click', () => {
-                    selecionarEquipe(cor);
-                });
-                
-                equipesContainerElement.appendChild(btn);
+
+        // Fechar menu ao clicar em link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('show');
             });
-        }
-        
-        // Rolar o dado
-        function rolarDado() {
-            if (rolandoDado) return;
-            
-            rolandoDado = true;
-            
-            // Desabilitar o botão durante a animação
-            rolarDadoBtn.disabled = true;
-            
-            // Adicionar animação
-            dadoElement.classList.add('rolar');
-            dadoElement.textContent = '?';
-            
-            // Gerar um número aleatório entre 1 e 6 após a animação
-            setTimeout(() => {
-                const resultado = Math.floor(Math.random() * 6) + 1;
-                dadoElement.textContent = resultado;
-                
-                // Atualizar pontuação da equipe
-                equipes[equipeAtual].pontuacao += resultado;
-                
-                // Adicionar ao histórico
-                const historicoItem = {
-                    equipe: equipes[equipeAtual].nome,
-                    resultado: resultado,
-                    rodada: rodada
-                };
-                historico.unshift(historicoItem);
-                
-                // Atualizar interface
-                atualizarEquipeAtual();
-                atualizarHistorico();
-                
-                // Avançar para a próxima equipe
-                avancarEquipe();
-                
-                // Reabilitar o botão
-                rolarDadoBtn.disabled = false;
-                dadoElement.classList.remove('rolar');
-                rolandoDado = false;
-            }, 800);
-        }
-        
-        // Avançar para a próxima equipe
-        function avancarEquipe() {
-            const cores = Object.keys(equipes);
-            const indexAtual = cores.indexOf(equipeAtual);
-            const proximoIndex = (indexAtual + 1) % cores.length;
-            
-            equipeAtual = cores[proximoIndex];
-            
-            // Se voltamos à primeira equipe, incrementamos a rodada
-            if (proximoIndex === 0) {
-                rodada++;
-            }
-            
-            atualizarEquipeAtual();
-        }
-        
-        // Atualizar o histórico
-        function atualizarHistorico() {
-            historicoListaElement.innerHTML = '';
-            
-            historico.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'historico-item';
-                itemElement.textContent = `Rodada ${item.rodada}: ${item.equipe} rolou ${item.resultado}`;
-                historicoListaElement.appendChild(itemElement);
-            });
-        }
-        
-        // Selecionar equipe manualmente
-        function selecionarEquipe(cor) {
-            equipeAtual = cor;
-            atualizarEquipeAtual();
-        }
-        
-        // Adicionar nova equipe
-        function adicionarEquipe() {
-            const nome = nomeNovaEquipeInput.value.trim();
-            const cor = corNovaEquipeSelect.value;
-            
-            if (!nome) {
-                alert('Por favor, digite um nome para a equipe.');
-                return;
-            }
-            
-            if (equipes[cor]) {
-                alert('Já existe uma equipe com esta cor. Escolha outra cor.');
-                return;
-            }
-            
-            // Adicionar a nova equipe
-            equipes[cor] = {
-                nome: nome,
-                cor: cor,
-                pontuacao: 0
-            };
-            
-            // Limpar o campo de entrada
-            nomeNovaEquipeInput.value = '';
-            
-            // Atualizar a interface
-            atualizarBotoesEquipes();
-        }
-        
-        // Remover equipe
-        function removerEquipe(cor) {
-            if (Object.keys(equipes).length <= 2) {
-                alert('É necessário ter pelo menos 2 equipes.');
-                return;
-            }
-            
-            if (confirm(`Tem certeza que deseja remover a ${equipes[cor].nome}?`)) {
-                // Se a equipe atual está sendo removida, mudar para a primeira equipe
-                if (equipeAtual === cor) {
-                    const outrasEquipes = Object.keys(equipes).filter(c => c !== cor);
-                    equipeAtual = outrasEquipes[0];
-                }
-                
-                // Remover a equipe
-                delete equipes[cor];
-                
-                // Atualizar a interface
-                atualizarEquipeAtual();
-                atualizarBotoesEquipes();
-            }
-        }
-        
-        // Event Listeners
-        rolarDadoBtn.addEventListener('click', rolarDado);
-        adicionarEquipeBtn.addEventListener('click', adicionarEquipe);
-        
-        // Permitir adicionar equipe com Enter
-        nomeNovaEquipeInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                adicionarEquipe();
-            }
         });
-        
-        // Inicializar
-        atualizarEquipeAtual();
-        atualizarBotoesEquipes();
+
+        // Toggle cards
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Timer
+        let timerInterval;
+        let timerSeconds = 0;
+        let timerRunning = false;
+        let currentExercise = '';
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = timerSeconds % 60;
+            document.getElementById('timerDisplay').textContent = 
+                `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            
+            const progress = (timerSeconds / 60) * 100;
+            document.getElementById('progressFill').style.width = Math.min(progress, 100) + '%';
+        }
+
+        function startTimer() {
+            if (!timerRunning) {
+                timerRunning = true;
+                timerInterval = setInterval(() => {
+                    timerSeconds++;
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerRunning = false;
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timerSeconds = 0;
+            updateTimerDisplay();
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('currentExercise').textContent = 'Timer resetado';
+        }
+
+        function startExerciseTimer(seconds, exerciseName) {
+            resetTimer();
+            timerSeconds = seconds;
+            updateTimerDisplay();
+            startTimer();
+            document.getElementById('currentExercise').textContent = `Exercício: ${exerciseName}`;
+        }
+
+        function startFullRoutine() {
+            const exercises = ['Polichinelos', 'Agachamentos', 'Flexões', 'Prancha', 'Bicicleta', 'Pulo do Sapo'];
+            let index = 0;
+            
+            function next() {
+                if (index < exercises.length) {
+                    startExerciseTimer(30, exercises[index]);
+                    index++;
+                    setTimeout(next, 45000); // 30s exercício + 15s descanso
+                } else {
+                    alert('Parabéns! Rotina completa! 🎉');
+                }
+            }
+            
+            next();
+        }
+
+        // Prevenir zoom acidental em double-tap
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>
