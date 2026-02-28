@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Vida Ativa Teens - Treinos em Casa</title>
+    <title>Uma escolha hoje, para construir o amanhã - Ciência do Exercício e ganho de força</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset e configurações gerais - OTIMIZADO PARA CELULAR */
+        /* ===== RESET E CONFIGURAÇÕES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -15,56 +15,92 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Cores */
+        /* Cores institucionais IFPB + nosso tema */
         :root {
-            --black: #0A0F0D;
+            --ifpb-green: #00A859;
+            --ifpb-blue: #003366;
             --dark-blue: #0B2B40;
             --blue: #1E5F73;
+            --black: #0A0F0D;
             --green: #2E8B57;
             --light-green: #4CAF50;
             --white: #F5F5F5;
             --gray: #2C3E50;
+            --accent-gold: #FFD700;
+            --warning-red: #ff6b6b;
         }
 
         body {
             background-color: var(--black);
             color: var(--white);
-            line-height: 1.5;
+            line-height: 1.6;
             font-size: 16px;
         }
 
         .container {
             width: 95%;
-            max-width: 500px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 10px;
+            padding: 0 15px;
         }
 
         section {
-            padding: 50px 0;
+            padding: 60px 0;
         }
 
-        /* Header */
+        /* ===== HEADER COM LOGO IFPB ===== */
         header {
             background-color: rgba(10, 15, 13, 0.98);
             backdrop-filter: blur(10px);
             color: var(--white);
-            padding: 12px 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--green);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            border-bottom: 3px solid var(--ifpb-green);
+            box-shadow: 0 2px 15px rgba(0,168,89,0.2);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
-        .logo {
-            font-size: 1.5rem;
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .ifpb-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--ifpb-green);
+            font-weight: bold;
+            font-size: 0.8rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            border-right: 2px solid var(--ifpb-green);
+            padding-right: 15px;
+        }
+
+        .ifpb-logo span:first-child {
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .ifpb-logo span:last-child {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .site-logo {
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--white);
             text-decoration: none;
@@ -72,159 +108,424 @@
             align-items: center;
         }
 
-        .logo span {
-            color: var(--green);
-            margin-left: 3px;
+        .site-logo span {
+            color: var(--ifpb-green);
+            margin-left: 5px;
+            text-shadow: 0 0 10px rgba(0,168,89,0.5);
         }
 
-        .logo i {
-            margin-right: 5px;
-            color: var(--blue);
-            font-size: 1.6rem;
+        .site-logo i {
+            margin-right: 8px;
+            color: var(--ifpb-blue);
+            font-size: 2rem;
         }
 
         .mobile-menu-btn {
             background: none;
             border: none;
-            color: var(--green);
-            font-size: 1.8rem;
+            color: var(--ifpb-green);
+            font-size: 2rem;
             cursor: pointer;
             width: 44px;
             height: 44px;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
         }
 
-        /* Menu mobile */
-        nav {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background: var(--black);
-            border-bottom: 2px solid var(--green);
-            transform: translateY(-150%);
-            transition: transform 0.3s ease;
-            z-index: 999;
-        }
-
-        nav.show {
-            transform: translateY(0);
-        }
-
         nav ul {
+            display: flex;
             list-style: none;
-            padding: 20px;
-        }
-
-        nav ul li {
-            margin: 15px 0;
+            gap: 25px;
         }
 
         nav ul li a {
             color: var(--white);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.2rem;
-            display: block;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 3px solid var(--green);
-            background: rgba(30, 95, 115, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--black) 0%, var(--dark-blue) 100%);
-            color: var(--white);
-            text-align: center;
-            padding: 60px 0;
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--ifpb-green), var(--ifpb-blue));
+            transition: width 0.3s;
         }
 
-        .hero h1 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--white), var(--green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        nav ul li a:hover {
+            color: var(--ifpb-green);
         }
 
-        .hero p {
-            font-size: 1rem;
-            margin-bottom: 25px;
-            padding: 0 15px;
+        nav ul li a:hover:after {
+            width: 100%;
         }
 
-        /* Botões */
+        /* ===== MENU MOBILE ===== */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--black);
+                border-bottom: 3px solid var(--ifpb-green);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+            
+            nav.show {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 12px;
+                background: rgba(0,168,89,0.1);
+                border-radius: 8px;
+                border-left: 4px solid var(--ifpb-green);
+            }
+        }
+
+        /* ===== BOTÕES ===== */
         .btn {
             display: inline-block;
-            background: linear-gradient(45deg, var(--dark-blue), var(--blue));
+            background: linear-gradient(45deg, var(--ifpb-blue), var(--dark-blue));
             color: var(--white);
-            padding: 16px 30px;
+            padding: 15px 35px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            border: 2px solid var(--green);
+            border: 2px solid var(--ifpb-green);
             cursor: pointer;
             margin: 8px;
             font-size: 1.1rem;
             min-width: 200px;
-            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+            box-shadow: 0 4px 15px rgba(0,168,89,0.3);
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, var(--ifpb-green), var(--green));
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,168,89,0.5);
         }
 
         .btn-outline {
             background: transparent;
+            border: 2px solid var(--ifpb-green);
         }
 
-        /* Títulos */
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--ifpb-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="10" cy="10" r="2" fill="%2300A859"/><circle cx="30" cy="40" r="3" fill="%231E5F73"/><circle cx="70" cy="20" r="2" fill="%234CAF50"/><circle cx="90" cy="70" r="4" fill="%23003366"/><circle cx="20" cy="80" r="2" fill="%2300A859"/></svg>');
+            animation: moveParticles 20s linear infinite;
+        }
+
+        @keyframes moveParticles {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-20px) translateX(10px); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--white), var(--ifpb-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* ===== SEÇÃO CIENTÍFICA ===== */
+        .scientific-evidence {
+            background: linear-gradient(135deg, var(--black), var(--dark-blue));
+            border-radius: 30px;
+            padding: 40px 20px;
+            margin: 40px 0;
+            border: 2px solid var(--ifpb-green);
+            box-shadow: 0 0 30px rgba(0,168,89,0.2);
+        }
+
         .section-title {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2rem;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
             position: relative;
         }
 
         .section-title span {
-            color: var(--green);
+            color: var(--ifpb-green);
+            text-shadow: 0 0 10px var(--ifpb-green);
         }
 
         .section-title:after {
             content: '';
             position: absolute;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--green), var(--blue));
-            bottom: -10px;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ifpb-green), var(--ifpb-blue));
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 2px;
         }
 
-        /* Cards de exercícios - COM INSTRUÇÕES DETALHADAS */
+        .evidence-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #ccc;
+        }
+
+        .evidence-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .highlight-card {
+            background: rgba(0,51,102,0.3);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid var(--ifpb-green);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,168,89,0.3);
+        }
+
+        .highlight-icon {
+            font-size: 3rem;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .highlight-content h3 {
+            color: var(--ifpb-green);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .highlight-content small {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .comparison-section {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid var(--ifpb-blue);
+        }
+
+        .comparison-section h3 {
+            text-align: center;
+            color: var(--ifpb-green);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .comparison-group {
+            background: rgba(30,95,115,0.2);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .comparison-group h4 {
+            color: var(--ifpb-green);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .comp-item {
+            margin-bottom: 20px;
+        }
+
+        .comp-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .comp-bar-container {
+            background: var(--dark-blue);
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+
+        .comp-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--ifpb-green), var(--ifpb-blue));
+            border-radius: 10px;
+        }
+
+        .comp-value {
+            font-size: 0.9rem;
+            color: var(--ifpb-green);
+            font-weight: bold;
+        }
+
+        .comp-note {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255,215,0,0.1);
+            border-left: 4px solid gold;
+            font-style: italic;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .benefit-card {
+            background: linear-gradient(145deg, var(--dark-blue), var(--black));
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid var(--ifpb-blue);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--ifpb-green);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card h4 {
+            color: var(--ifpb-green);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card ul {
+            list-style: none;
+            text-align: left;
+            padding: 0 10px;
+        }
+
+        .benefit-card li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefit-card li:before {
+            content: "✓";
+            color: var(--ifpb-green);
+            font-weight: bold;
+        }
+
+        .benefit-card small {
+            display: block;
+            margin-top: 15px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .concept-box {
+            background: rgba(0,168,89,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 40px 0;
+            border-left: 5px solid var(--ifpb-green);
+        }
+
+        .concept-box h4 {
+            color: var(--ifpb-green);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* ===== CARDS DE EXERCÍCIOS (6 EXERCÍCIOS COMPLETOS) ===== */
         .exercises-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
 
         .exercise-card {
             background: linear-gradient(145deg, var(--dark-blue), var(--black));
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--blue);
+            border: 1px solid var(--ifpb-blue);
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .exercise-card:active {
-            transform: scale(0.98);
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--ifpb-green);
+            box-shadow: 0 10px 30px rgba(0,168,89,0.3);
         }
 
         .card-image {
             height: 150px;
-            background: linear-gradient(135deg, var(--blue), var(--dark-blue));
+            background: linear-gradient(135deg, var(--ifpb-blue), var(--dark-blue));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -232,7 +533,7 @@
 
         .card-image i {
             font-size: 4rem;
-            color: var(--green);
+            color: var(--ifpb-green);
         }
 
         .card-content {
@@ -240,24 +541,22 @@
         }
 
         .card-content h3 {
-            font-size: 1.4rem;
+            color: var(--ifpb-green);
             margin-bottom: 5px;
-            color: var(--green);
+            font-size: 1.5rem;
         }
 
-        .card-content p {
-            font-size: 0.95rem;
+        .card-content > p {
             color: #ccc;
             margin-bottom: 10px;
         }
 
-        /* INSTRUÇÕES DETALHADAS - AGORA MAIS COMPLETAS */
         .exercise-details {
-            background: rgba(30, 95, 115, 0.3);
+            background: rgba(30,95,115,0.3);
             padding: 18px;
             border-radius: 10px;
             margin-top: 15px;
-            border-left: 4px solid var(--green);
+            border-left: 4px solid var(--ifpb-green);
             display: none;
         }
 
@@ -272,76 +571,91 @@
         }
 
         .exercise-details h4 {
-            color: var(--green);
-            margin: 12px 0 5px 0;
+            color: var(--ifpb-green);
+            margin: 15px 0 8px;
             font-size: 1.1rem;
         }
 
+        .exercise-details h4:first-of-type {
+            margin-top: 0;
+        }
+
         .exercise-details ul {
-            list-style-type: none;
+            list-style: none;
             padding-left: 5px;
         }
 
         .exercise-details li {
             margin-bottom: 8px;
-            font-size: 0.95rem;
             display: flex;
             align-items: flex-start;
             gap: 8px;
+            font-size: 0.95rem;
         }
 
         .exercise-details li i {
-            color: var(--green);
+            color: var(--ifpb-green);
             font-size: 0.9rem;
             margin-top: 3px;
-            min-width: 16px;
-        }
-
-        .exercise-details .highlight {
-            color: var(--light-green);
-            font-weight: bold;
         }
 
         .exercise-details .warning {
-            color: #ffaa00;
+            color: var(--warning-red);
         }
 
-        /* Cronômetro - DESTAQUE PRINCIPAL */
+        .exercise-details .warning i {
+            color: var(--warning-red);
+        }
+
+        .timer-btn {
+            background: var(--ifpb-green);
+            color: var(--black);
+            border: none;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .timer-btn:hover {
+            background: var(--light-green);
+            transform: scale(1.02);
+        }
+
+        /* ===== CRONÔMETRO ===== */
         .timer-main-container {
             background: linear-gradient(145deg, var(--black), var(--dark-blue));
             border-radius: 30px;
-            padding: 30px 20px;
+            padding: 30px;
             text-align: center;
-            border: 3px solid var(--green);
+            border: 3px solid var(--ifpb-green);
             margin: 30px 0;
-            box-shadow: 0 0 30px rgba(46, 139, 87, 0.3);
+            box-shadow: 0 0 40px rgba(0,168,89,0.3);
         }
 
         .timer-display {
             font-size: 5rem;
             font-weight: bold;
-            color: var(--green);
+            color: var(--ifpb-green);
             font-family: monospace;
             margin: 20px 0;
-            text-shadow: 0 0 20px var(--green);
-        }
-
-        .timer-label {
-            font-size: 1.2rem;
-            color: var(--white);
-            margin-bottom: 10px;
+            text-shadow: 0 0 20px var(--ifpb-green);
         }
 
         .timer-controls {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 25px 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .timer-controls button {
-            padding: 18px;
-            font-size: 1.2rem;
+            padding: 15px;
+            font-size: 1.1rem;
             border: none;
             border-radius: 30px;
             cursor: pointer;
@@ -350,28 +664,44 @@
         }
 
         .timer-start {
-            background: var(--green);
+            background: var(--ifpb-green);
             color: var(--black);
-            grid-column: span 2;
-            font-size: 1.4rem;
+            grid-column: span 3;
         }
 
         .timer-pause {
-            background: var(--blue);
+            background: var(--ifpb-blue);
             color: var(--white);
         }
 
         .timer-reset {
             background: var(--dark-blue);
             color: var(--white);
-            border: 1px solid var(--green);
+            border: 1px solid var(--ifpb-green);
         }
 
-        .timer-controls button:active {
-            transform: scale(0.95);
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        /* Barra de progresso */
+        .preset-btn {
+            background: rgba(0,168,89,0.2);
+            border: 1px solid var(--ifpb-green);
+            color: var(--white);
+            padding: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .preset-btn:hover {
+            background: var(--ifpb-green);
+            color: var(--black);
+        }
+
         .progress-bar {
             width: 100%;
             height: 15px;
@@ -379,113 +709,58 @@
             border-radius: 10px;
             margin: 20px 0;
             overflow: hidden;
-            border: 1px solid var(--blue);
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--green), var(--blue));
+            background: linear-gradient(90deg, var(--ifpb-green), var(--ifpb-blue));
             width: 0%;
             transition: width 0.3s;
         }
 
-        /* Exercício atual */
-        .current-exercise {
-            background: rgba(46, 139, 87, 0.2);
-            padding: 15px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border: 1px dashed var(--green);
-        }
-
-        .current-exercise p {
-            font-size: 1.1rem;
-        }
-
-        .current-exercise i {
-            color: var(--green);
-            margin-right: 8px;
-        }
-
-        /* Rotina */
+        /* ===== ROTINA ===== */
         .routine-section {
             background: linear-gradient(135deg, var(--black), var(--dark-blue));
             border-radius: 20px;
-            padding: 25px;
-            margin-top: 30px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 2px solid var(--ifpb-blue);
         }
 
         .routine-timeline {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
 
         .routine-item {
-            background: rgba(30, 95, 115, 0.3);
-            padding: 18px;
-            border-radius: 12px;
+            background: rgba(30,95,115,0.3);
+            padding: 20px;
+            border-radius: 15px;
             text-align: center;
-            border-bottom: 3px solid var(--green);
-        }
-
-        .routine-item h4 {
-            color: var(--green);
-            font-size: 1.2rem;
-            margin: 5px 0;
+            border-bottom: 4px solid var(--ifpb-green);
         }
 
         .routine-item i {
-            font-size: 2rem;
-            color: var(--blue);
+            font-size: 2.5rem;
+            color: var(--ifpb-green);
+            margin-bottom: 10px;
         }
 
-        /* Dicas */
-        .tips-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .tip-card {
-            background: linear-gradient(145deg, var(--dark-blue), var(--black));
-            padding: 20px 12px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid var(--blue);
-        }
-
-        .tip-card i {
-            font-size: 2rem;
-            color: var(--green);
-            margin-bottom: 8px;
-        }
-
-        .tip-card h4 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .tip-card p {
-            font-size: 0.85rem;
-            color: #ccc;
-        }
-
-        /* Footer */
+        /* ===== RODAPÉ COM REFERÊNCIAS ===== */
         footer {
             background: var(--black);
-            padding: 30px 0 15px;
-            border-top: 2px solid var(--green);
-            margin-top: 20px;
+            padding: 50px 0 20px;
+            border-top: 3px solid var(--ifpb-green);
+            margin-top: 40px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
         .footer-logo {
@@ -494,156 +769,281 @@
         }
 
         .footer-logo span {
-            color: var(--green);
+            color: var(--ifpb-green);
         }
 
-        .footer-links ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        .authors {
+            background: rgba(0,168,89,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--ifpb-green);
         }
 
-        .footer-links ul li a {
+        .authors h4 {
+            color: var(--ifpb-green);
+            margin-bottom: 10px;
+        }
+
+        .authors p {
             color: #ccc;
-            text-decoration: none;
-            font-size: 1rem;
-            padding: 8px 12px;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
         }
 
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-icons a {
-            width: 44px;
-            height: 44px;
-            background: var(--dark-blue);
-            border-radius: 50%;
+        .ifpb-footer {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--green);
-            text-decoration: none;
+            gap: 10px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--ifpb-green);
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .ifpb-footer i {
+            font-size: 2rem;
+        }
+
+        .references-section {
+            grid-column: 1 / -1;
+            background: rgba(0,51,102,0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .references-section h4 {
+            color: var(--ifpb-green);
             font-size: 1.3rem;
-            border: 1px solid var(--blue);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .reference-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        .reference-list p {
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--ifpb-green);
+        }
+
+        .reference-list strong {
+            color: var(--ifpb-green);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 15px;
-            margin-top: 15px;
+            padding-top: 20px;
             border-top: 1px solid var(--dark-blue);
-            font-size: 0.85rem;
             color: #888;
-        }
-
-        /* QR Code info */
-        .qrcode-info {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--green);
-            color: var(--black);
-            padding: 12px 18px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 99;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .qrcode-info i {
-            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <!-- QR Code Info -->
-    <div class="qrcode-info">
-        <i class="fas fa-qrcode"></i> Escaneie para acessar no celular
-    </div>
-
-    <!-- Header Mobile -->
+    <!-- HEADER COM LOGO IFPB -->
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo"><i class="fas fa-dumbbell"></i>Vida<span>Ativa</span></a>
+                <div class="logo-area">
+                    <div class="ifpb-logo">
+                        <span>INSTITUTO</span>
+                        <span>FEDERAL</span>
+                        <span>Paraíba</span>
+                    </div>
+                    <a href="#" class="site-logo">
+                        <i class="fas fa-dumbbell"></i>Vida<span>Ativa</span>
+                    </a>
+                </div>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i>
                 </button>
+                <nav id="mobileNav">
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#cientifico">Ciência</a></li>
+                        <li><a href="#exercises">Exercícios</a></li>
+                        <li><a href="#timer">Timer</a></li>
+                        <li><a href="#referencias">Referências</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>
 
-    <!-- Menu Mobile -->
-    <nav id="mobileNav">
-        <ul>
-            <li><a href="#home" onclick="toggleMenu()"><i class="fas fa-home"></i> Início</a></li>
-            <li><a href="#exercises" onclick="toggleMenu()"><i class="fas fa-running"></i> Exercícios</a></li>
-            <li><a href="#routine" onclick="toggleMenu()"><i class="fas fa-calendar"></i> Rotina</a></li>
-            <li><a href="#timer-main" onclick="toggleMenu()"><i class="fas fa-clock"></i> Cronômetro</a></li>
-            <li><a href="#tips" onclick="toggleMenu()"><i class="fas fa-lightbulb"></i> Dicas</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>CRONÔMETRO DE TREINO</h1>
-            <p>Controle seu tempo e execute cada exercício com a técnica correta</p>
-            <a href="#timer-main" class="btn"><i class="fas fa-clock"></i> USAR CRONÔMETRO</a>
-            <a href="#exercises" class="btn btn-outline"><i class="fas fa-running"></i> VER EXERCÍCIOS</a>
+            <h1>EXERCÍCIO COM CIÊNCIA</h1>
+            <p>Descubra o que a pesquisa científica diz sobre os benefícios do exercício físico na adolescência e comece a treinar agora!</p>
+            <a href="#cientifico" class="btn" onclick="scrollToSection('cientifico')"><i class="fas fa-flask"></i> VER EVIDÊNCIAS</a>
+            <a href="#exercises" class="btn btn-outline" onclick="scrollToSection('exercises')"><i class="fas fa-running"></i> PRATICAR</a>
         </div>
     </section>
 
-    <!-- CRONÔMETRO PRINCIPAL - DESTAQUE -->
-    <section id="timer-main">
+    <!-- SEÇÃO CIENTÍFICA -->
+    <section class="scientific-evidence" id="cientifico">
         <div class="container">
-            <div class="timer-main-container">
-                <h2 class="section-title">CRONÔMETRO</h2>
-                
-                <div class="timer-label" id="currentExerciseLabel">Pronto para começar</div>
-                <div class="timer-display" id="timerDisplay">00:00</div>
-                
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
+            <h2 class="section-title">🔬 EVIDÊNCIAS <span>CIENTÍFICAS</span></h2>
+            <p class="evidence-intro">Pesquisas brasileiras comprovam: exercício físico transforma vidas!</p>
+            
+            <!-- DESTAQUES -->
+            <div class="evidence-highlights">
+                <div class="highlight-card">
+                    <div class="highlight-icon">📊</div>
+                    <div class="highlight-content">
+                        <h3>50,4% dos adolescentes que praticam esporte</h3>
+                        <p>apresentam ALTA percepção de qualidade de vida</p>
+                        <small>(Pacifico et al., 2020)</small>
+                    </div>
                 </div>
                 
-                <div class="current-exercise" id="currentExerciseCard">
-                    <p><i class="fas fa-info-circle"></i> Toque em qualquer exercício abaixo para iniciar o cronômetro com tempo pré-definido</p>
+                <div class="highlight-card">
+                    <div class="highlight-icon">⚠️</div>
+                    <div class="highlight-content">
+                        <h3>51% das meninas que NÃO praticam exercício</h3>
+                        <p>têm BAIXA percepção de qualidade de vida</p>
+                        <small>(Pacifico et al., 2020)</small>
+                    </div>
                 </div>
                 
-                <div class="timer-controls">
-                    <button class="timer-start" onclick="startTimer()"><i class="fas fa-play"></i> INICIAR</button>
-                    <button class="timer-pause" onclick="pauseTimer()"><i class="fas fa-pause"></i> PAUSAR</button>
-                    <button class="timer-reset" onclick="resetTimer()"><i class="fas fa-redo"></i> RESETAR</button>
+                <div class="highlight-card">
+                    <div class="highlight-icon">🧠</div>
+                    <div class="highlight-content">
+                        <h3>Melhora o controle inibitório</h3>
+                        <p>e a capacidade de concentração e memorização</p>
+                        <small>(Browne et al., 2016; Lima et al., 2019)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPARAÇÃO -->
+            <div class="comparison-section">
+                <h3>⚖️ Quem pratica esporte × Quem não pratica</h3>
+                
+                <div class="comparison-grid">
+                    <!-- Meninos -->
+                    <div class="comparison-group">
+                        <h4>👦 MENINOS</h4>
+                        <div class="comp-item">
+                            <span class="comp-label">Sentimentos</span>
+                            <div class="comp-bar-container">
+                                <div class="comp-bar" style="width: 85%"></div>
+                            </div>
+                            <span class="comp-value">Praticantes de esporte têm melhores sentimentos</span>
+                        </div>
+                        <div class="comp-item">
+                            <span class="comp-label">Tempo livre</span>
+                            <div class="comp-bar-container">
+                                <div class="comp-bar" style="width: 90%"></div>
+                            </div>
+                            <span class="comp-value">Esportistas aproveitam melhor o tempo livre</span>
+                        </div>
+                        <div class="comp-item">
+                            <span class="comp-label">Amigos e apoio social</span>
+                            <div class="comp-bar-container">
+                                <div class="comp-bar" style="width: 95%"></div>
+                            </div>
+                            <span class="comp-value">Mais amigos e suporte social</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Meninas -->
+                    <div class="comparison-group">
+                        <h4>👧 MENINAS</h4>
+                        <div class="comp-item">
+                            <span class="comp-label">Sentimentos</span>
+                            <div class="comp-bar-container">
+                                <div class="comp-bar" style="width: 75%"></div>
+                            </div>
+                            <span class="comp-value">Praticantes de esporte têm melhores sentimentos</span>
+                        </div>
+                        <div class="comp-item">
+                            <span class="comp-label">Estado emocional</span>
+                            <div class="comp-bar-container">
+                                <div class="comp-bar" style="width: 70%"></div>
+                            </div>
+                            <span class="comp-value">Mais equilíbrio emocional</span>
+                        </div>
+                        <p class="comp-note">💡 Meninas precisam de MAIS incentivo e opções esportivas!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BENEFÍCIOS COMPROVADOS -->
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧘</div>
+                    <h4>Saúde Mental</h4>
+                    <ul>
+                        <li>Redução de ansiedade e depressão</li>
+                        <li>Menos tensão, raiva e confusão</li>
+                        <li>Efeitos duram até 24h</li>
+                    </ul>
+                    <small>Ferreira et al., 2020; Camargos & Silva, 2020</small>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
-                    <button class="btn-outline" style="padding: 12px;" onclick="setTimer(30)">30 seg</button>
-                    <button class="btn-outline" style="padding: 12px;" onclick="setTimer(45)">45 seg</button>
-                    <button class="btn-outline" style="padding: 12px;" onclick="setTimer(60)">60 seg</button>
-                    <button class="btn-outline" style="padding: 12px;" onclick="setTimer(90)">90 seg</button>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📚</div>
+                    <h4>Desempenho Escolar</h4>
+                    <ul>
+                        <li>Melhor concentração</li>
+                        <li>Maior capacidade de memorização</li>
+                        <li>Controle inibitório aprimorado</li>
+                    </ul>
+                    <small>Browne et al., 2016; Lima et al., 2019</small>
                 </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">👥</div>
+                    <h4>Vida Social</h4>
+                    <ul>
+                        <li>Menos isolamento social</li>
+                        <li>Mais amigos e apoio social</li>
+                        <li>Proteção contra solidão</li>
+                    </ul>
+                    <small>Santos et al., 2015; Pacifico et al., 2020</small>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h4>Comportamentos de Risco</h4>
+                    <ul>
+                        <li>Redução do uso de drogas</li>
+                        <li>Menos comportamentos de risco</li>
+                        <li>Maior autoestima</li>
+                    </ul>
+                    <small>Santos et al., 2025; Santana et al., 2023</small>
+                </div>
+            </div>
+
+            <!-- CONCEITOS -->
+            <div class="concept-box">
+                <h4>📝 Você sabia?</h4>
+                <p><strong>Atividade física</strong> é qualquer movimento corporal que gasta energia (caminhar, brincar).<br>
+                <strong>Exercício físico</strong> é uma atividade planejada e estruturada para melhorar a aptidão física.</p>
+                <small>(Brasil, 2021; Santos et al., 2025)</small>
             </div>
         </div>
     </section>
 
-    <!-- Exercícios com INSTRUÇÕES DETALHADAS -->
+    <!-- EXERCÍCIOS (6 COMPLETOS) -->
     <section class="exercises" id="exercises">
         <div class="container">
-            <h2 class="section-title">EXERCÍCIOS <span>COM INSTRUÇÕES</span></h2>
-            <p style="text-align: center; margin-bottom: 20px; color: #ccc;">Clique no card para ver instruções detalhadas</p>
+            <h2 class="section-title">EXERCÍCIOS <span>COMPLETOS</span></h2>
+            <p style="text-align: center; margin-bottom: 30px;">Clique em cada card para ver instruções detalhadas e dicas de segurança</p>
             
             <div class="exercises-grid">
-                <!-- POLICHINELOS - Instruções detalhadas -->
+                <!-- 1. POLICHINELOS -->
                 <div class="exercise-card" onclick="toggleCard(this)">
                     <div class="card-image">
                         <i class="fas fa-running"></i>
@@ -652,37 +1052,45 @@
                         <h3>POLICHINELOS</h3>
                         <p>Exercício cardiovascular completo</p>
                         <div class="exercise-details">
-                            <h4><i class="fas fa-check-circle"></i> Como executar corretamente:</h4>
+                            <h4>✅ Como fazer corretamente:</h4>
                             <ul>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Posição inicial:</span> Pés juntos, braços ao lado do corpo</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Movimento 1:</span> Salte abrindo as pernas na largura dos ombros</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Movimento 2:</span> Simultaneamente, levante os braços acima da cabeça</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Movimento 3:</span> Salte novamente voltando à posição inicial</li>
-                                <li><i class="fas fa-angle-right"></i> Mantenha o abdômen contraído durante todo o movimento</li>
-                                <li><i class="fas fa-angle-right"></i> Respire de forma ritmada: inspire ao abrir, expire ao fechar</li>
+                                <li><i class="fas fa-check"></i> Pés juntos, braços ao lado do corpo</li>
+                                <li><i class="fas fa-check"></i> Salte abrindo pernas na largura dos ombros</li>
+                                <li><i class="fas fa-check"></i> Simultaneamente, levante os braços acima da cabeça</li>
+                                <li><i class="fas fa-check"></i> Volte à posição inicial com outro salto</li>
+                                <li><i class="fas fa-check"></i> Mantenha abdômen contraído</li>
+                                <li><i class="fas fa-check"></i> Respire de forma ritmada</li>
                             </ul>
                             
-                            <h4><i class="fas fa-exclamation-triangle warning"></i> Erros comuns:</h4>
+                            <h4>⚠️ Erros comuns (evite!):</h4>
                             <ul>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Bater os pés com muita força no chão</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Arquear as costas durante o movimento</li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Bater os pés com muita força</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Arquear as costas</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Prender a respiração</span></li>
                             </ul>
                             
-                            <h4><i class="fas fa-star" style="color: gold;"></i> Benefícios:</h4>
+                            <h4>💡 Benefícios:</h4>
                             <ul>
-                                <li><i class="fas fa-heart" style="color: #ff6b6b;"></i> Melhora o condicionamento cardiovascular</li>
+                                <li><i class="fas fa-heart" style="color: #ff6b6b;"></i> Melhora condicionamento cardiovascular</li>
                                 <li><i class="fas fa-fire"></i> Queima calorias rapidamente</li>
+                                <li><i class="fas fa-lungs"></i> Aumenta capacidade respiratória</li>
                             </ul>
                             
-                            <p style="margin-top: 15px;"><i class="fas fa-clock"></i> <strong>Tempo sugerido:</strong> 30 a 45 segundos</p>
-                            <button class="timer-btn" style="background: var(--green); border: none; padding: 12px; border-radius: 25px; width: 100%;" onclick="startExerciseTimer(30, 'Polichinelos'); event.stopPropagation();">
-                                <i class="fas fa-play"></i> INICIAR CRONÔMETRO (30s)
+                            <h4>🛡️ Dicas de segurança:</h4>
+                            <ul>
+                                <li><i class="fas fa-shield-alt"></i> Use tênis com amortecimento</li>
+                                <li><i class="fas fa-shield-alt"></i> Superfície plana e não escorregadia</li>
+                                <li><i class="fas fa-shield-alt"></i> Comece devagar e aumente ritmo gradualmente</li>
+                            </ul>
+                            
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Polichinelos'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> INICIAR CRONÔMETRO (30s)
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- AGACHAMENTOS - Instruções detalhadas -->
+                <!-- 2. AGACHAMENTOS -->
                 <div class="exercise-card" onclick="toggleCard(this)">
                     <div class="card-image">
                         <i class="fas fa-child"></i>
@@ -691,78 +1099,88 @@
                         <h3>AGACHAMENTOS</h3>
                         <p>Fortalece pernas e glúteos</p>
                         <div class="exercise-details">
-                            <h4><i class="fas fa-check-circle"></i> Como executar corretamente:</h4>
+                            <h4>✅ Como fazer corretamente:</h4>
                             <ul>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Posição inicial:</span> Pés na largura dos ombros, pontas ligeiramente viradas para fora</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Costas:</span> Mantenha a coluna ereta e o olhar para frente</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Descida:</span> Flexione os joelhos como se fosse sentar numa cadeira</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Profundidade:</span> Desça até as coxas ficarem paralelas ao chão</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Joelhos:</span> NÃO podem ultrapassar a ponta dos pés</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Subida:</span> Empurre o chão com os pés para voltar à posição inicial</li>
+                                <li><i class="fas fa-check"></i> Pés na largura dos ombros, pontas ligeiramente viradas para fora</li>
+                                <li><i class="fas fa-check"></i> Costas retas, olhar para frente</li>
+                                <li><i class="fas fa-check"></i> Desça como se fosse sentar numa cadeira</li>
+                                <li><i class="fas fa-check"></i> Joelhos NÃO podem ultrapassar a ponta dos pés</li>
+                                <li><i class="fas fa-check"></i> Suba empurrando o chão com os pés</li>
                             </ul>
                             
-                            <h4><i class="fas fa-exclamation-triangle warning"></i> Erros comuns:</h4>
+                            <h4>⚠️ Erros comuns (evite!):</h4>
                             <ul>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Tirar os calcanhares do chão</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Curvar as costas (arredondar a coluna)</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Joelhos cedendo para dentro</li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Tirar os calcanhares do chão</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Curvar as costas (arredondar a coluna)</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Joelhos cedendo para dentro</span></li>
                             </ul>
                             
-                            <h4><i class="fas fa-lightbulb"></i> Variações:</h4>
+                            <h4>💡 Variações:</h4>
                             <ul>
-                                <li><i class="fas fa-chair"></i> <span class="highlight">Iniciante:</span> Use uma cadeira como referência (sente e levante)</li>
-                                <li><i class="fas fa-forward"></i> <span class="highlight">Avançado:</span> Agachamento com salto ao final</li>
+                                <li><i class="fas fa-chair"></i> <strong>Iniciante:</strong> Use uma cadeira como referência</li>
+                                <li><i class="fas fa-forward"></i> <strong>Avançado:</strong> Agachamento com salto</li>
                             </ul>
                             
-                            <p style="margin-top: 15px;"><i class="fas fa-clock"></i> <strong>Tempo sugerido:</strong> 30 a 45 segundos</p>
-                            <button class="timer-btn" style="background: var(--green); border: none; padding: 12px; border-radius: 25px; width: 100%;" onclick="startExerciseTimer(30, 'Agachamentos'); event.stopPropagation();">
-                                <i class="fas fa-play"></i> INICIAR CRONÔMETRO (30s)
+                            <h4>🛡️ Dicas de segurança:</h4>
+                            <ul>
+                                <li><i class="fas fa-shield-alt"></i> Mantenha o peso nos calcanhares</li>
+                                <li><i class="fas fa-shield-alt"></i> Contraia abdômen durante todo movimento</li>
+                                <li><i class="fas fa-shield-alt"></i> Se sentir dor nos joelhos, pare e verifique a postura</li>
+                            </ul>
+                            
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Agachamentos'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> INICIAR CRONÔMETRO (30s)
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- FLEXÕES - Instruções detalhadas -->
+                <!-- 3. FLEXÕES -->
                 <div class="exercise-card" onclick="toggleCard(this)">
                     <div class="card-image">
                         <i class="fas fa-hand-peace"></i>
                     </div>
                     <div class="card-content">
                         <h3>FLEXÕES DE BRAÇO</h3>
-                        <p>Fortalece peitoral, ombros e tríceps</p>
+                        <p>Fortalece peitoral e braços</p>
                         <div class="exercise-details">
-                            <h4><i class="fas fa-check-circle"></i> Como executar corretamente:</h4>
+                            <h4>✅ Como fazer corretamente:</h4>
                             <ul>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Posição inicial:</span> De bruços, mãos apoiadas no chão na largura dos ombros</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Corpo:</span> Mantenha o corpo reto como uma tábua (dos pés à cabeça)</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Descida:</span> Flexione os cotovelos até o peito quase encostar no chão</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Subida:</span> Empurre o chão para voltar à posição inicial</li>
-                                <li><i class="fas fa-angle-right"></i> Mantenha o abdômen contraído o tempo todo</li>
+                                <li><i class="fas fa-check"></i> Mãos apoiadas no chão na largura dos ombros</li>
+                                <li><i class="fas fa-check"></i> Corpo reto como uma tábua (dos pés à cabeça)</li>
+                                <li><i class="fas fa-check"></i> Desça até o peito quase encostar no chão</li>
+                                <li><i class="fas fa-check"></i> Suba empurrando o chão</li>
+                                <li><i class="fas fa-check"></i> Mantenha abdômen contraído</li>
                             </ul>
                             
-                            <h4><i class="fas fa-exclamation-triangle warning"></i> Erros comuns:</h4>
+                            <h4>⚠️ Erros comuns (evite!):</h4>
                             <ul>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Deixar o quadril cair (formar um "V" invertido)</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Não descer o suficiente</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Abrir demais os cotovelos</li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Deixar o quadril cair (formar "V" invertido)</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Não descer o suficiente</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Abrir demais os cotovelos</span></li>
                             </ul>
                             
-                            <h4><i class="fas fa-lightbulb"></i> Variações:</h4>
+                            <h4>💡 Variações:</h4>
                             <ul>
-                                <li><i class="fas fa-kneeling"></i> <span class="highlight">Iniciante:</span> Apoie os joelhos no chão</li>
-                                <li><i class="fas fa-arrows-alt"></i> <span class="highlight">Intermediário:</span> Flexão com mãos fechadas (punhos)</li>
-                                <li><i class="fas fa-star"></i> <span class="highlight">Avançado:</span> Flexão com palmas</li>
+                                <li><i class="fas fa-kneeling"></i> <strong>Iniciante:</strong> Apoie os joelhos no chão</li>
+                                <li><i class="fas fa-star"></i> <strong>Avançado:</strong> Flexão com palmas</li>
                             </ul>
                             
-                            <p style="margin-top: 15px;"><i class="fas fa-clock"></i> <strong>Tempo sugerido:</strong> 30 a 45 segundos (faça quantas repetições conseguir)</p>
-                            <button class="timer-btn" style="background: var(--green); border: none; padding: 12px; border-radius: 25px; width: 100%;" onclick="startExerciseTimer(30, 'Flexões'); event.stopPropagation();">
-                                <i class="fas fa-play"></i> INICIAR CRONÔMETRO (30s)
+                            <h4>🛡️ Dicas de segurança:</h4>
+                            <ul>
+                                <li><i class="fas fa-shield-alt"></i> Não tranque os cotovelos no topo do movimento</li>
+                                <li><i class="fas fa-shield-alt"></i> Mantenha o pescoço alinhado (olhe para o chão)</li>
+                                <li><i class="fas fa-shield-alt"></i> Faça em superfície estável</li>
+                            </ul>
+                            
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Flexões'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> INICIAR CRONÔMETRO (30s)
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- PRANCHA - Instruções detalhadas -->
+                <!-- 4. PRANCHA -->
                 <div class="exercise-card" onclick="toggleCard(this)">
                     <div class="card-image">
                         <i class="fas fa-wave-square"></i>
@@ -771,79 +1189,76 @@
                         <h3>PRANCHA ABDOMINAL</h3>
                         <p>Fortalece core e abdômen</p>
                         <div class="exercise-details">
-                            <h4><i class="fas fa-check-circle"></i> Como executar corretamente:</h4>
+                            <h4>✅ Como fazer corretamente:</h4>
                             <ul>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Posição inicial:</span> Apoie os antebraços no chão, cotovelos alinhados com os ombros</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Pernas:</span> Estendidas, apoiadas na ponta dos pés</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Corpo:</span> Forme uma linha reta da cabeça aos calcanhares</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Abdômen:</span> Mantenha contraído como se fosse levar um soco</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Glúteos:</span> Contraia também para estabilizar</li>
-                                <li><i class="fas fa-angle-right"></i> Respire de forma controlada, sem prender a respiração</li>
+                                <li><i class="fas fa-check"></i> Apoie antebraços no chão, cotovelos alinhados com ombros</li>
+                                <li><i class="fas fa-check"></i> Pernas estendidas, apoiadas na ponta dos pés</li>
+                                <li><i class="fas fa-check"></i> Corpo forma uma linha reta da cabeça aos calcanhares</li>
+                                <li><i class="fas fa-check"></i> Contraia abdômen e glúteos</li>
+                                <li><i class="fas fa-check"></i> Respire de forma controlada</li>
                             </ul>
                             
-                            <h4><i class="fas fa-exclamation-triangle warning"></i> Erros comuns:</h4>
+                            <h4>⚠️ Erros comuns (evite!):</h4>
                             <ul>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Deixar o quadril subir ou descer</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Arquejar as costas</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Levantar a cabeça (olhe para o chão)</li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Deixar o quadril subir ou descer</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Arquear as costas</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Levantar a cabeça (olhe para o chão)</span></li>
                             </ul>
                             
-                            <h4><i class="fas fa-lightbulb"></i> Dicas:</h4>
+                            <h4>💡 Dicas importantes:</h4>
                             <ul>
-                                <li><i class="fas fa-check"></i> Se sentir dor na lombar, pare e ajuste a posição</li>
-                                <li><i class="fas fa-check"></i> É melhor fazer 20 segundos bem feitos que 1 minuto torto</li>
+                                <li><i class="fas fa-lightbulb"></i> Se sentir dor na lombar, pare e ajuste a posição</li>
+                                <li><i class="fas fa-lightbulb"></i> 20 segundos bem feitos valem mais que 1 minuto torto</li>
+                                <li><i class="fas fa-lightbulb"></i> Olhe para o chão para manter pescoço alinhado</li>
                             </ul>
                             
-                            <p style="margin-top: 15px;"><i class="fas fa-clock"></i> <strong>Tempo sugerido:</strong> 30 a 45 segundos</p>
-                            <button class="timer-btn" style="background: var(--green); border: none; padding: 12px; border-radius: 25px; width: 100%;" onclick="startExerciseTimer(30, 'Prancha'); event.stopPropagation();">
-                                <i class="fas fa-play"></i> INICIAR CRONÔMETRO (30s)
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Prancha'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> INICIAR CRONÔMETRO (30s)
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- BICICLETA NO CHÃO - Instruções detalhadas -->
+                <!-- 5. BICICLETA NO CHÃO -->
                 <div class="exercise-card" onclick="toggleCard(this)">
                     <div class="card-image">
                         <i class="fas fa-bicycle"></i>
                     </div>
                     <div class="card-content">
                         <h3>BICICLETA NO CHÃO</h3>
-                        <p>Exercício abdominal completo</p>
+                        <p>Foco abdominal</p>
                         <div class="exercise-details">
-                            <h4><i class="fas fa-check-circle"></i> Como executar corretamente:</h4>
+                            <h4>✅ Como fazer corretamente:</h4>
                             <ul>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Posição inicial:</span> Deite de barriga para cima</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Mãos:</span> Levemente apoiadas atrás da cabeça (não puxe o pescoço)</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Pernas:</span> Eleve do chão e alterne o movimento de pedalar</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Movimento:</span> Leve o cotovelo direito em direção ao joelho esquerdo</li>
-                                <li><i class="fas fa-angle-right"></i> Alterne os lados como se estivesse pedalando no ar</li>
-                                <li><i class="fas fa-angle-right"></i> Mantenha o abdômen contraído durante todo o movimento</li>
+                                <li><i class="fas fa-check"></i> Deite de barriga para cima</li>
+                                <li><i class="fas fa-check"></i> Mãos levemente apoiadas atrás da cabeça (NÃO puxe o pescoço)</li>
+                                <li><i class="fas fa-check"></i> Eleve as pernas do chão</li>
+                                <li><i class="fas fa-check"></i> Alterne o movimento de pedalar</li>
+                                <li><i class="fas fa-check"></i> Leve cotovelo direito em direção ao joelho esquerdo</li>
                             </ul>
                             
-                            <h4><i class="fas fa-exclamation-triangle warning"></i> Erros comuns:</h4>
+                            <h4>⚠️ Erros comuns (evite!):</h4>
                             <ul>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Puxar o pescoço com as mãos</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Movimento muito rápido sem controle</li>
-                                <li><i class="fas fa-times" style="color: #ff6b6b;"></i> Parar de respirar durante o exercício</li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Puxar o pescoço com as mãos</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Movimento muito rápido sem controle</span></li>
+                                <li><i class="fas fa-times warning"></i> <span class="warning">Parar de respirar</span></li>
                             </ul>
                             
-                            <h4><i class="fas fa-bullseye"></i> Foco:</h4>
+                            <h4>🎯 Foco muscular:</h4>
                             <ul>
-                                <li><i class="fas fa-check"></i> Oblíquos (laterais do abdômen)</li>
-                                <li><i class="fas fa-check"></i> Reto abdominal</li>
-                                <li><i class="fas fa-check"></i> Flexores do quadril</li>
+                                <li><i class="fas fa-bullseye"></i> Oblíquos (laterais do abdômen)</li>
+                                <li><i class="fas fa-bullseye"></i> Reto abdominal</li>
+                                <li><i class="fas fa-bullseye"></i> Flexores do quadril</li>
                             </ul>
                             
-                            <p style="margin-top: 15px;"><i class="fas fa-clock"></i> <strong>Tempo sugerido:</strong> 30 a 45 segundos</p>
-                            <button class="timer-btn" style="background: var(--green); border: none; padding: 12px; border-radius: 25px; width: 100%;" onclick="startExerciseTimer(30, 'Bicicleta'); event.stopPropagation();">
-                                <i class="fas fa-play"></i> INICIAR CRONÔMETRO (30s)
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Bicicleta'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> INICIAR CRONÔMETRO (30s)
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- PULO DO SAPO / MEIO-BURPEE - Instruções detalhadas -->
+                <!-- 6. PULO DO SAPO -->
                 <div class="exercise-card" onclick="toggleCard(this)">
                     <div class="card-image">
                         <i class="fas fa-frog"></i>
@@ -852,124 +1267,147 @@
                         <h3>PULO DO SAPO (MEIO-BURPEE)</h3>
                         <p>Exercício de alta intensidade</p>
                         <div class="exercise-details">
-                            <h4><i class="fas fa-check-circle"></i> Como executar corretamente:</h4>
+                            <h4>✅ Como fazer corretamente:</h4>
                             <ul>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Posição inicial:</span> Agachado com as mãos apoiadas no chão</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Fase 1:</span> Pule estendendo as pernas para trás (posição de prancha)</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Fase 2:</span> Pule trazendo os pés de volta às mãos</li>
-                                <li><i class="fas fa-angle-right"></i> <span class="highlight">Fase 3:</span> Levante e dê um salto com os braços para cima</li>
-                                <li><i class="fas fa-angle-right"></i> Repita o movimento de forma fluida</li>
+                                <li><i class="fas fa-check"></i> Agachado com mãos apoiadas no chão</li>
+                                <li><i class="fas fa-check"></i> Pule estendendo pernas para trás (posição de prancha)</li>
+                                <li><i class="fas fa-check"></i> Pule trazendo pés de volta às mãos</li>
+                                <li><i class="fas fa-check"></i> Levante e dê um salto com braços para cima</li>
+                                <li><i class="fas fa-check"></i> Repita de forma fluida</li>
                             </ul>
                             
-                            <h4><i class="fas fa-exclamation-triangle warning"></i> Cuidados importantes:</h4>
+                            <h4>⚠️ Cuidados importantes:</h4>
                             <ul>
-                                <li><i class="fas fa-shield-alt"></i> <span class="highlight">Pulso:</span> Mantenha os pulsos aquecidos (é um exercício de impacto)</li>
-                                <li><i class="fas fa-shield-alt"></i> <span class="highlight">Costas:</span> Evite arquear a lombar na fase da prancha</li>
-                                <li><i class="fas fa-shield-alt"></i> <span class="highlight">Impacto:</span> Se tiver problemas nos joelhos, faça mais devagar</li>
+                                <li><i class="fas fa-shield-alt"></i> <strong>Pulso:</strong> Mantenha aquecido (impacto)</li>
+                                <li><i class="fas fa-shield-alt"></i> <strong>Costas:</strong> Evite arquear na prancha</li>
+                                <li><i class="fas fa-shield-alt"></i> <strong>Joelhos:</strong> Se doer, faça mais devagar</li>
                             </ul>
                             
-                            <h4><i class="fas fa-tachometer-alt"></i> Intensidade:</h4>
+                            <h4>📊 Intensidade:</h4>
                             <ul>
-                                <li><i class="fas fa-battery-quarter"></i> <span class="highlight">Mais leve:</span> Faça sem o salto final (volte em pé)</li>
-                                <li><i class="fas fa-battery-full"></i> <span class="highlight">Mais intenso:</span> Aumente a velocidade e o salto final</li>
+                                <li><i class="fas fa-battery-quarter"></i> <strong>Mais leve:</strong> Sem o salto final</li>
+                                <li><i class="fas fa-battery-full"></i> <strong>Mais intenso:</strong> Aumente velocidade</li>
                             </ul>
                             
-                            <p style="margin-top: 15px;"><i class="fas fa-clock"></i> <strong>Tempo sugerido:</strong> 30 a 45 segundos</p>
-                            <button class="timer-btn" style="background: var(--green); border: none; padding: 12px; border-radius: 25px; width: 100%;" onclick="startExerciseTimer(30, 'Pulo do Sapo'); event.stopPropagation();">
-                                <i class="fas fa-play"></i> INICIAR CRONÔMETRO (30s)
+                            <button class="timer-btn" onclick="startExerciseTimer(30, 'Pulo do Sapo'); event.stopPropagation();">
+                                <i class="fas fa-clock"></i> INICIAR CRONÔMETRO (30s)
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Rotina Completa -->
-    <section id="routine">
-        <div class="container">
+            <!-- ROTINA COMPLETA -->
             <div class="routine-section">
-                <h2 style="color: var(--green); text-align: center; margin-bottom: 20px;">ROTINA COMPLETA</h2>
-                
+                <h2 style="color: var(--ifpb-green); text-align: center;">🏆 ROTINA COMPLETA</h2>
                 <div class="routine-timeline">
                     <div class="routine-item">
                         <i class="fas fa-temperature-high"></i>
-                        <h4>AQUECIMENTO</h4>
+                        <h4>Aquecimento</h4>
                         <p>5 minutos</p>
-                        <small style="color: #ccc;">Giros de braços, corrida no lugar, polichinelos leves</small>
+                        <small>Giros, corrida no lugar, polichinelos leves</small>
                     </div>
                     <div class="routine-item">
                         <i class="fas fa-bolt"></i>
-                        <h4>EXERCÍCIOS</h4>
+                        <h4>6 Exercícios</h4>
                         <p>3 séries</p>
-                        <small style="color: #ccc;">30-45s cada / 15s descanso</small>
+                        <small>30s cada / 15s descanso</small>
                     </div>
                     <div class="routine-item">
                         <i class="fas fa-heartbeat"></i>
-                        <h4>ALONGAMENTO</h4>
+                        <h4>Alongamento</h4>
                         <p>5 minutos</p>
-                        <small style="color: #ccc;">Braços, pernas e costas</small>
+                        <small>Braços, pernas e costas</small>
                     </div>
                 </div>
-
                 <button class="btn" style="width: 100%;" onclick="startFullRoutine()">
                     <i class="fas fa-play"></i> INICIAR ROTINA COMPLETA
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRONÔMETRO -->
+    <section id="timer">
+        <div class="container">
+            <div class="timer-main-container">
+                <h2 class="section-title">⏱️ CRONÔMETRO</h2>
                 
-                <p style="text-align: center; margin-top: 15px; color: #ccc; font-size: 0.9rem;">
-                    <i class="fas fa-info-circle"></i> A rotina alterna 30s de exercício e 15s de descanso
-                </p>
+                <div class="timer-display" id="timerDisplay">00:00</div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <div class="timer-controls">
+                    <button class="timer-start" onclick="startTimer()"><i class="fas fa-play"></i> INICIAR</button>
+                    <button class="timer-pause" onclick="pauseTimer()"><i class="fas fa-pause"></i> PAUSAR</button>
+                    <button class="timer-reset" onclick="resetTimer()"><i class="fas fa-redo"></i> RESETAR</button>
+                </div>
+                
+                <div class="preset-buttons">
+                    <button class="preset-btn" onclick="setTimer(30)">30s</button>
+                    <button class="preset-btn" onclick="setTimer(45)">45s</button>
+                    <button class="preset-btn" onclick="setTimer(60)">60s</button>
+                    <button class="preset-btn" onclick="setTimer(90)">90s</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Dicas Rápidas -->
-    <section class="container" id="tips">
-        <h2 class="section-title">DICAS <span>IMPORTANTES</span></h2>
-        
-        <div class="tips-section">
-            <div class="tip-card">
-                <i class="fas fa-shield-alt"></i>
-                <h4>SEGURANÇA</h4>
-                <p>Use tênis e colchonete</p>
-            </div>
-            <div class="tip-card">
-                <i class="fas fa-tachometer-alt"></i>
-                <h4>INTENSIDADE</h4>
-                <p>Aumente aos poucos</p>
-            </div>
-            <div class="tip-card">
-                <i class="fas fa-water"></i>
-                <h4>HIDRATAÇÃO</h4>
-                <p>Beba água sempre</p>
-            </div>
-            <div class="tip-card">
-                <i class="fas fa-lungs"></i>
-                <h4>RESPIRAÇÃO</h4>
-                <p>Nunca prenda o ar</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
+    <!-- RODAPÉ COM REFERÊNCIAS -->
+    <footer id="referencias">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">Vida<span>Ativa</span></div>
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#exercises">Exercícios</a></li>
-                        <li><a href="#timer-main">Cronômetro</a></li>
-                    </ul>
+                <div>
+                    <div class="footer-logo">Vida<span>Ativa</span></div>
+                    <p>Movimento com ciência para adolescentes</p>
                 </div>
-                <div class="social-icons">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                
+                <div class="authors">
+                    <h4><i class="fas fa-user-graduate"></i> Autores</h4>
+                    <p>João Pedro Cavalcante Maciel</p>
+                    <p>Luis Henrique Sales Martins dos Santos</p>
+                    <p><small>3° ano de Informática - IFPB Campus Pedras de Fogo</small></p>
+                </div>
+                
+                <div class="ifpb-footer">
+                    <i class="fas fa-university"></i>
+                    <div>
+                        <strong>INSTITUTO FEDERAL</strong><br>
+                        Paraíba<br>
+                        <small>Campus Pedras de Fogo</small>
+                    </div>
                 </div>
             </div>
+
+            <!-- REFERÊNCIAS CIENTÍFICAS COMPLETAS -->
+            <div class="references-section">
+                <h4>📚 REFERÊNCIAS CIENTÍFICAS (ABNT)</h4>
+                <div class="reference-list">
+                    <p><strong>PACIFICO, A. B.</strong> et al. Comparação da percepção de qualidade de vida entre adolescentes praticantes e não praticantes de esporte no contraturno escolar. <strong>Cadernos Saúde Coletiva</strong>, Rio de Janeiro, v. 28, n. 4, p. 548-555, 2020.</p>
+                    
+                    <p><strong>SANTOS, V. F.</strong> et al. Exercício físico: efeitos no adolescente. <strong>RENEF</strong>, Montes Claros, v. 7, n. 10, p. 83-94, 2025.</p>
+                    
+                    <p><strong>BROWNE, R. A. V.</strong> et al. Efeito agudo do exercício aeróbio vigoroso sobre o controle inibitório em adolescentes. <strong>Revista Paulista de Pediatria</strong>, v. 34, n. 2, p. 154-161, 2016.</p>
+                    
+                    <p><strong>FERREIRA, V. R.</strong> et al. Inatividade física no lazer e na escola está associada à presença de transtornos mentais comuns na adolescência. <strong>Revista de Saúde Pública</strong>, v. 54, p. 128, 2020.</p>
+                    
+                    <p><strong>SANTOS, S. J.</strong> et al. Associação entre prática de atividades físicas, participação nas aulas de Educação Física e isolamento social em adolescentes. <strong>Jornal de Pediatria</strong>, v. 91, n. 6, 2015.</p>
+                    
+                    <p><strong>LIMA, J. S.</strong> et al. Associação entre práticas de atividade física e desempenho acadêmico de estudantes chilenos. <strong>Revista Brasileira de Ciência do Esporte</strong>, v. 41, p. 206-214, 2019.</p>
+                    
+                    <p><strong>SANTANA, C. M.</strong> et al. Insatisfação corporal, comportamento sedentário, aulas de educação física e atividade física extraescolar em adolescentes brasileiros. <strong>Revista CPAQV</strong>, v. 15, n. 3, p. 13, 2023.</p>
+                    
+                    <p><strong>CAMARGOS, J. F.; SILVA, L. O.</strong> Avaliação do estado de humor de adolescentes durante a pandemia da COVID-19 com intervenção aguda da educação física escolar. <strong>Revista Saberes Acadêmicos</strong>, v. 20, n. 2, p. 191-205, 2020.</p>
+                    
+                    <p><strong>BRASIL.</strong> Ministério da Saúde. <strong>Guia de atividade física para a população brasileira</strong>. Brasília, 2021.</p>
+                </div>
+            </div>
+
             <div class="copyright">
-                <p>© 2024 Vida Ativa Teens - Treinos em Casa</p>
+                <p>© 2025 Vida Ativa Teens - Projeto de extensão IFPB Campus Pedras de Fogo</p>
+                <p style="font-size: 0.8rem; margin-top: 5px;">Todos os direitos reservados</p>
             </div>
         </div>
     </footer>
@@ -980,35 +1418,43 @@
             document.getElementById('mobileNav').classList.toggle('show');
         }
 
-        // Fechar menu ao clicar em link
+        // Fechar menu ao clicar em links
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('mobileNav').classList.remove('show');
             });
         });
 
-        // Toggle cards (abrir/fechar instruções)
+        // Função de scroll suave corrigida para os botões
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Toggle cards de exercícios
         function toggleCard(card) {
             card.classList.toggle('active');
         }
 
-        // Smooth scroll
+        // Smooth scroll para todos os links de âncora
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
                 if(target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // ========== CRONÔMETRO ==========
+        // ===== CRONÔMETRO =====
         let timerInterval;
         let timerSeconds = 0;
         let timerRunning = false;
-        let currentExercise = '';
-        let totalSeconds = 30; // padrão
+        let totalSeconds = 30;
 
         function updateTimerDisplay() {
             const mins = Math.floor(timerSeconds / 60);
@@ -1016,19 +1462,8 @@
             document.getElementById('timerDisplay').textContent = 
                 `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
             
-            // Atualizar barra de progresso
-            let progress = 0;
-            if (totalSeconds > 0) {
-                progress = (timerSeconds / totalSeconds) * 100;
-            }
+            let progress = totalSeconds > 0 ? (timerSeconds / totalSeconds) * 100 : 0;
             document.getElementById('progressFill').style.width = Math.min(progress, 100) + '%';
-            
-            // Mudar cor quando estiver perto do fim
-            if (timerSeconds >= totalSeconds && totalSeconds > 0) {
-                document.getElementById('timerDisplay').style.color = '#ffaa00';
-            } else {
-                document.getElementById('timerDisplay').style.color = 'var(--green)';
-            }
         }
 
         function startTimer() {
@@ -1037,15 +1472,9 @@
                 timerInterval = setInterval(() => {
                     timerSeconds++;
                     updateTimerDisplay();
-                    
-                    // Parar automaticamente quando atingir o tempo total
                     if (totalSeconds > 0 && timerSeconds >= totalSeconds) {
                         pauseTimer();
-                        // Vibrar se o dispositivo suportar (opcional)
                         if (navigator.vibrate) navigator.vibrate(200);
-                        
-                        // Atualizar mensagem
-                        document.getElementById('currentExerciseLabel').innerHTML = '⏰ Tempo finalizado!';
                     }
                 }, 1000);
             }
@@ -1059,34 +1488,17 @@
         function resetTimer() {
             pauseTimer();
             timerSeconds = 0;
-            totalSeconds = 30; // reset para 30s
             updateTimerDisplay();
-            document.getElementById('currentExerciseLabel').innerHTML = 'Pronto para começar';
-            document.getElementById('currentExerciseCard').innerHTML = '<p><i class="fas fa-info-circle"></i> Toque em qualquer exercício para iniciar o cronômetro</p>';
         }
 
         function setTimer(seconds) {
             resetTimer();
             totalSeconds = seconds;
-            document.getElementById('currentExerciseLabel').innerHTML = `Timer configurado para ${seconds} segundos`;
-            document.getElementById('currentExerciseCard').innerHTML = `<p><i class="fas fa-clock"></i> Cronômetro: ${seconds}s - Clique em INICIAR</p>`;
         }
 
         function startExerciseTimer(seconds, exerciseName) {
             resetTimer();
             totalSeconds = seconds;
-            timerSeconds = 0;
-            currentExercise = exerciseName;
-            updateTimerDisplay();
-            
-            // Atualizar interface
-            document.getElementById('currentExerciseLabel').innerHTML = `<i class="fas fa-running"></i> ${exerciseName}`;
-            document.getElementById('currentExerciseCard').innerHTML = `
-                <p><i class="fas fa-info-circle"></i> Exercício: <strong>${exerciseName}</strong></p>
-                <p><i class="fas fa-clock"></i> Tempo: ${seconds} segundos</p>
-            `;
-            
-            // Iniciar automaticamente
             startTimer();
         }
 
@@ -1094,37 +1506,20 @@
             const exercises = ['Polichinelos', 'Agachamentos', 'Flexões', 'Prancha', 'Bicicleta', 'Pulo do Sapo'];
             let index = 0;
             
-            alert('Rotina iniciada! Siga as instruções.');
+            alert('Rotina iniciada! Siga a ordem dos exercícios.');
             
             function nextExercise() {
                 if (index < exercises.length) {
                     startExerciseTimer(30, exercises[index]);
                     index++;
-                    
-                    // Agendar próximo exercício (30s + 15s descanso)
-                    setTimeout(() => {
-                        if (index < exercises.length) {
-                            // Mostrar descanso
-                            document.getElementById('currentExerciseLabel').innerHTML = '💤 DESCANSO (15s)';
-                        }
-                    }, 30000);
-                    
                     setTimeout(nextExercise, 45000); // 30s exercício + 15s descanso
                 } else {
-                    alert('🎉 Parabéns! Você completou a rotina completa!');
-                    resetTimer();
+                    alert('🎉 Parabéns! Rotina completa!');
                 }
             }
             
             nextExercise();
         }
-
-        // Prevenir zoom acidental
-        document.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
     </script>
 </body>
 </html>
