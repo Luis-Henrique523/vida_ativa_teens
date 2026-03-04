@@ -1326,6 +1326,35 @@
             </div>
         </div>
     </section>
+<!-- TREINOS DE FORÇA POR IDADE -->
+<section id="treinos">
+    <div class="container">
+        <h2 class="section-title">🏋️ TREINOS DE <span>FORÇA POR IDADE</span></h2>
+        
+        <div class="routine-section">
+            
+            <div style="text-align:center; margin-bottom:20px;">
+                <label>Idade:</label>
+                <select id="ageSelect" style="padding:8px; border-radius:10px;">
+                    <option value="14-17">14 a 17 anos</option>
+                    <option value="18-22">18 a 22 anos</option>
+                </select>
+
+                <label style="margin-left:20px;">Nível:</label>
+                <select id="levelSelect" style="padding:8px; border-radius:10px;">
+                    <option value="basic">Básico</option>
+                    <option value="intermediate">Intermediário</option>
+                    <option value="advanced">Avançado</option>
+                </select>
+
+                <button class="btn" onclick="generateWorkout()">GERAR TREINO</button>
+            </div>
+
+            <div id="workoutResult" style="margin-top:20px;"></div>
+
+        </div>
+    </div>
+</section>
 
     <!-- CRONÔMETRO -->
     <section id="timer">
