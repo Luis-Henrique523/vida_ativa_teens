@@ -1532,23 +1532,62 @@
         }
 
         function startFullRoutine() {
-            const exercises = ['Polichinelos', 'Agachamentos', 'Flexões', 'Prancha', 'Bicicleta', 'Pulo do Sapo'];
-            let index = 0;
-            
-            alert('Rotina iniciada! Siga a ordem dos exercícios.');
-            
-            function nextExercise() {
-                if (index < exercises.length) {
-                    startExerciseTimer(30, exercises[index]);
-                    index++;
-                    setTimeout(nextExercise, 45000); // 30s exercício + 15s descanso
-                } else {
-                    alert('🎉 Parabéns! Rotina completa!');
-                }
+        const exercises = ['Polichinelos', 'Agachamentos', 'Flexões', 'Prancha', 'Bicicleta', 'Pulo do Sapo'];
+        let index = 0;
+
+        alert('Rotina iniciada! Siga a ordem dos exercícios.');
+
+        function nextExercise() {
+            if (index < exercises.length) {
+                startExerciseTimer(30, exercises[index]);
+                index++;
+                setTimeout(nextExercise, 45000);
+            } else {
+                alert('🎉 Parabéns! Rotina completa!');
             }
-            
-            nextExercise();
         }
-    </script>
+
+        nextExercise(); // ✅ FICA AQUI DENTRO
+    }
+
+
+    // ===== TREINOS POR IDADE =====
+    function generateWorkout() {
+        const age = document.getElementById("ageSelect").value;
+        const level = document.getElementById("levelSelect").value;
+        const resultDiv = document.getElementById("workoutResult");
+
+        let workout = "";
+
+        if (age === "14-17") {
+            if (level === "basic") {
+                workout = `
+                <h3>Treino Básico (14–17)</h3>
+                <ul>
+                    <li>Agachamento – 3x12</li>
+                    <li>Flexão com joelhos – 3x8</li>
+                    <li>Prancha – 3x20s</li>
+                    <li>Polichinelos – 3x30s</li>
+                </ul>`;
+            }
+        }
+
+        if (age === "18-22") {
+            if (level === "basic") {
+                workout = `
+                <h3>Treino Básico (18–22)</h3>
+                <ul>
+                    <li>Agachamento – 3x15</li>
+                    <li>Flexão – 3x12</li>
+                    <li>Prancha – 3x30s</li>
+                    <li>Bicicleta – 3x20</li>
+                </ul>`;
+            }
+        }
+
+        resultDiv.innerHTML = workout;
+    }
+
+</script>
 </body>
 </html>
