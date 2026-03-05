@@ -500,7 +500,7 @@
             margin-bottom: 10px;
         }
 
-        /* ===== CARDS DE EXERCÍCIOS (6 EXERCÍCIOS COMPLETOS) ===== */
+        /* ===== CARDS DE EXERCÍCIOS ===== */
         .exercises-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -748,7 +748,76 @@
             margin-bottom: 10px;
         }
 
-        /* ===== RODAPÉ COM REFERÊNCIAS ===== */
+        /* ===== SEÇÃO TREINOS POR IDADE (RESPONSIVA) ===== */
+        .workout-controls {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .workout-controls select {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid var(--ifpb-green);
+            background: var(--dark-blue);
+            color: var(--white);
+            font-size: 1rem;
+            min-width: 150px;
+            cursor: pointer;
+        }
+
+        .workout-controls label {
+            font-weight: bold;
+            color: var(--ifpb-green);
+        }
+
+        @media (max-width: 768px) {
+            .workout-controls {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .workout-controls select {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .workout-controls .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        #workoutResult {
+            background: rgba(0,51,102,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid var(--ifpb-green);
+        }
+
+        #workoutResult h3 {
+            color: var(--ifpb-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #workoutResult ul {
+            list-style: none;
+        }
+
+        #workoutResult li {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            border-left: 3px solid var(--ifpb-green);
+        }
+
+        /* ===== RODAPÉ ===== */
         footer {
             background: var(--black);
             padding: 50px 0 20px;
@@ -872,6 +941,7 @@
                         <li><a href="#home">Início</a></li>
                         <li><a href="#cientifico">Ciência</a></li>
                         <li><a href="#exercises">Exercícios</a></li>
+                        <li><a href="#treinos">Força</a></li>
                         <li><a href="#timer">Timer</a></li>
                         <li><a href="#referencias">Referências</a></li>
                     </ul>
@@ -1326,35 +1396,36 @@
             </div>
         </div>
     </section>
-<!-- TREINOS DE FORÇA POR IDADE -->
-<section id="treinos">
-    <div class="container">
-        <h2 class="section-title">🏋️ TREINOS DE <span>FORÇA POR IDADE</span></h2>
-        
-        <div class="routine-section">
+
+    <!-- TREINOS DE FORÇA POR IDADE -->
+    <section id="treinos">
+        <div class="container">
+            <h2 class="section-title">🏋️ TREINOS DE <span>FORÇA POR IDADE</span></h2>
             
-            <div style="text-align:center; margin-bottom:20px;">
-                <label>Idade:</label>
-                <select id="ageSelect" style="padding:8px; border-radius:10px;">
-                    <option value="14-17">14 a 17 anos</option>
-                    <option value="18-22">18 a 22 anos</option>
-                </select>
+            <div class="routine-section">
+                
+                <div class="workout-controls">
+                    <label>Idade:</label>
+                    <select id="ageSelect">
+                        <option value="14-17">14 a 17 anos</option>
+                        <option value="18-22">18 a 22 anos</option>
+                    </select>
 
-                <label style="margin-left:20px;">Nível:</label>
-                <select id="levelSelect" style="padding:8px; border-radius:10px;">
-                    <option value="basic">Básico</option>
-                    <option value="intermediate">Intermediário</option>
-                    <option value="advanced">Avançado</option>
-                </select>
+                    <label>Nível:</label>
+                    <select id="levelSelect">
+                        <option value="basic">Básico</option>
+                        <option value="intermediate">Intermediário</option>
+                        <option value="advanced">Avançado</option>
+                    </select>
 
-                <button class="btn" onclick="generateWorkout()">GERAR TREINO</button>
+                    <button class="btn" onclick="generateWorkout()">GERAR TREINO</button>
+                </div>
+
+                <div id="workoutResult" style="margin-top:20px;"></div>
+
             </div>
-
-            <div id="workoutResult" style="margin-top:20px;"></div>
-
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- CRONÔMETRO -->
     <section id="timer">
@@ -1435,7 +1506,7 @@
             </div>
 
             <div class="copyright">
-                <p>© 2025 Vida Ativa Teens - Projeto de extensão IFPB Campus Pedras de Fogo</p>
+                <p>© 2026 Vida Ativa Teens - Atividade extra do Campus Pedras de Fogo</p>
                 <p style="font-size: 0.8rem; margin-top: 5px;">Todos os direitos reservados</p>
             </div>
         </div>
@@ -1454,7 +1525,7 @@
             });
         });
 
-        // Função de scroll suave corrigida para os botões
+        // Função de scroll suave
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
@@ -1532,62 +1603,110 @@
         }
 
         function startFullRoutine() {
-        const exercises = ['Polichinelos', 'Agachamentos', 'Flexões', 'Prancha', 'Bicicleta', 'Pulo do Sapo'];
-        let index = 0;
+            const exercises = ['Polichinelos', 'Agachamentos', 'Flexões', 'Prancha', 'Bicicleta', 'Pulo do Sapo'];
+            let index = 0;
 
-        alert('Rotina iniciada! Siga a ordem dos exercícios.');
+            alert('Rotina iniciada! Siga a ordem dos exercícios.');
 
-        function nextExercise() {
-            if (index < exercises.length) {
-                startExerciseTimer(30, exercises[index]);
-                index++;
-                setTimeout(nextExercise, 45000);
-            } else {
-                alert('🎉 Parabéns! Rotina completa!');
+            function nextExercise() {
+                if (index < exercises.length) {
+                    startExerciseTimer(30, exercises[index]);
+                    index++;
+                    setTimeout(nextExercise, 45000);
+                } else {
+                    alert('🎉 Parabéns! Rotina completa!');
+                }
             }
+
+            nextExercise();
         }
 
-        nextExercise(); // ✅ FICA AQUI DENTRO
-    }
+        // ===== TREINOS POR IDADE - COMPLETO =====
+        function generateWorkout() {
+            const age = document.getElementById("ageSelect").value;
+            const level = document.getElementById("levelSelect").value;
+            const resultDiv = document.getElementById("workoutResult");
 
+            let workout = "";
 
-    // ===== TREINOS POR IDADE =====
-    function generateWorkout() {
-        const age = document.getElementById("ageSelect").value;
-        const level = document.getElementById("levelSelect").value;
-        const resultDiv = document.getElementById("workoutResult");
-
-        let workout = "";
-
-        if (age === "14-17") {
-            if (level === "basic") {
-                workout = `
-                <h3>Treino Básico (14–17)</h3>
-                <ul>
-                    <li>Agachamento – 3x12</li>
-                    <li>Flexão com joelhos – 3x8</li>
-                    <li>Prancha – 3x20s</li>
-                    <li>Polichinelos – 3x30s</li>
-                </ul>`;
+            if (age === "14-17") {
+                if (level === "basic") {
+                    workout = `
+                        <h3>🔰 Treino BÁSICO (14–17 anos)</h3>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Agachamento:</strong> 3 séries de 12 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Flexão com joelhos:</strong> 3 séries de 8 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Prancha:</strong> 3 séries de 20 segundos</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Polichinelos:</strong> 3 séries de 30 segundos</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Descanso:</strong> 45 seg entre séries</li>
+                        </ul>
+                    `;
+                } else if (level === "intermediate") {
+                    workout = `
+                        <h3>⚡ Treino INTERMEDIÁRIO (14–17 anos)</h3>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Agachamento:</strong> 4 séries de 15 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Flexão tradicional:</strong> 4 séries de 10 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Prancha:</strong> 3 séries de 40 segundos</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Bicicleta no chão:</strong> 3 séries de 20 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Afundo:</strong> 3 séries de 10 cada perna</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Descanso:</strong> 30 seg entre séries</li>
+                        </ul>
+                    `;
+                } else if (level === "advanced") {
+                    workout = `
+                        <h3>🔥 Treino AVANÇADO (14–17 anos)</h3>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Agachamento com salto:</strong> 4 séries de 12 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Flexão diamante:</strong> 4 séries de 8 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Prancha com elevação de perna:</strong> 3 séries de 30 seg</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Burpee:</strong> 3 séries de 10 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Mountain climber:</strong> 3 séries de 20 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Descanso:</strong> 20 seg entre séries</li>
+                        </ul>
+                    `;
+                }
+            } else if (age === "18-22") {
+                if (level === "basic") {
+                    workout = `
+                        <h3>🔰 Treino BÁSICO (18–22 anos)</h3>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Agachamento:</strong> 3 séries de 15 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Flexão:</strong> 3 séries de 12 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Prancha:</strong> 3 séries de 30 segundos</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Bicicleta:</strong> 3 séries de 20 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Descanso:</strong> 45 seg entre séries</li>
+                        </ul>
+                    `;
+                } else if (level === "intermediate") {
+                    workout = `
+                        <h3>⚡ Treino INTERMEDIÁRIO (18–22 anos)</h3>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Agachamento:</strong> 4 séries de 20 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Flexão:</strong> 4 séries de 15 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Prancha:</strong> 3 séries de 45 segundos</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Bicicleta:</strong> 3 séries de 25 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Afundo:</strong> 3 séries de 12 cada perna</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Descanso:</strong> 30 seg entre séries</li>
+                        </ul>
+                    `;
+                } else if (level === "advanced") {
+                    workout = `
+                        <h3>🔥 Treino AVANÇADO (18–22 anos)</h3>
+                        <ul>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Agachamento búlgaro:</strong> 4 séries de 12 cada perna</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Flexão declinada:</strong> 4 séries de 12 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Prancha com peso:</strong> 3 séries de 40 segundos</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Burpee com flexão:</strong> 4 séries de 10 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Mountain climber:</strong> 4 séries de 30 repetições</li>
+                            <li><i class="fas fa-check" style="color: var(--ifpb-green);"></i> <strong>Descanso:</strong> 15 seg entre séries</li>
+                        </ul>
+                    `;
+                }
             }
+
+            resultDiv.innerHTML = workout;
         }
-
-        if (age === "18-22") {
-            if (level === "basic") {
-                workout = `
-                <h3>Treino Básico (18–22)</h3>
-                <ul>
-                    <li>Agachamento – 3x15</li>
-                    <li>Flexão – 3x12</li>
-                    <li>Prancha – 3x30s</li>
-                    <li>Bicicleta – 3x20</li>
-                </ul>`;
-            }
-        }
-
-        resultDiv.innerHTML = workout;
-    }
-
-</script>
+    </script>
 </body>
 </html>
